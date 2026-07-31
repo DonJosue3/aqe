@@ -441,6 +441,11 @@ onMounted(()=> {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com");
+@import url("https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css");
+@import url("https://fonts.gstatic.com");
+
     *,
     *::before,
     *::after {
