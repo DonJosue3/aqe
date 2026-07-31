@@ -19,7 +19,7 @@
         <h1 id="sliderTitle"></h1>
         <p id="sliderText"></p>
         <div class="hero-cta-wrap">
-          <RouterLink to="services">Explore Our Services <i
+          <RouterLink to="/services" class="cta-btn cta-btn--gold">Explore Our Services <i
               class="ti ti-arrow-right"></i></RouterLink></div>
       </div>
     </div>
@@ -115,8 +115,8 @@
               <h3 class="svc-title">Handmade Creativity</h3>
               <div class="svc-deco"></div>
               <p class="svc-desc">Authentic African handmade creations crafted with passion, precision, and cultural
-                identity.</p><a href="https://africanqueenempire.com/services/handmade" class="svc-link">Discover <i
-                  class="ti ti-arrow-right"></i></a>
+                identity.</p><RouterLink to="/services" class="svc-link">Discover <i
+                  class="ti ti-arrow-right"></i></RouterLink>
             </div>
             <div class="svc-peek">
               <div class="svc-peek-num">02 ·</div>
@@ -137,8 +137,8 @@
               <h3 class="svc-title">Interior Decoration</h3>
               <div class="svc-deco"></div>
               <p class="svc-desc">Elegant interiors inspired by African warmth, luxury, textures, and natural
-                aesthetics.</p><a href="https://africanqueenempire.com/services/interior" class="svc-link">Discover <i
-                  class="ti ti-arrow-right"></i></a>
+                aesthetics.</p><RouterLink to="/services" class="svc-link">Discover <i
+                  class="ti ti-arrow-right"></i></RouterLink>
             </div>
             <div class="svc-peek">
               <div class="svc-peek-num">03 ·</div>
@@ -161,8 +161,8 @@
               <h3 class="svc-title">Café Lifestyle</h3>
               <div class="svc-deco"></div>
               <p class="svc-desc">Immersive coffee experiences blending African hospitality, atmosphere, and premium
-                taste.</p><RouterLink to="/menu">Here is the menu <i
-                  class="ti ti-arrow-right"></i></RouterLink>
+                taste.</p><RouterLink to="/menu" class="svc-link" >Here is the menu <i
+                  ></i></RouterLink>
             </div>
             <div class="svc-peek">
               <div class="svc-peek-num">04 ·</div>
@@ -175,15 +175,15 @@
             <div class="svc-dot"></div>
           </div>
           <div class="svc-body">
-            <div class="svc-img-wrap"><img src="/images/logo.png" alt="Fashion">
+            <div class="svc-img-wrap"><img src="/images/FP5.jpg" alt="Fashion">
               <div class="svc-img-overlay"></div>
             </div>
             <div class="svc-text"><span class="svc-num">04</span><span class="svc-eyebrow">Mode · African Fashion</span>
               <h3 class="svc-title">Fashion Products</h3>
               <div class="svc-deco"></div>
               <p class="svc-desc">Premium African fashion products designed with bold identity and contemporary luxury.
-              </p><a href="https://africanqueenempire.com/services/fashion" class="svc-link">Discover <i
-                  class="ti ti-arrow-right"></i></a>
+              </p><RouterLink class="svc-link">Discover <i
+                  class="ti ti-arrow-right"></i></RouterLink>
             </div>
             <div class="svc-peek">
               <div class="svc-peek-num">05 ·</div>
@@ -203,8 +203,8 @@
               <h3 class="svc-title">Natural Hair Elegance</h3>
               <div class="svc-deco"></div>
               <p class="svc-desc">Celebrating the beauty and power of natural African hair — premium care products.</p>
-              <a href="https://africanqueenempire.com/services/hair" class="svc-link">Discover <i
-                  class="ti ti-arrow-right"></i></a>
+              <RouterLink to="/services" class="svc-link">Discover <i
+                  class="ti ti-arrow-right"></i></RouterLink>
             </div>
             <div class="svc-peek"></div>
           </div>
@@ -352,9 +352,9 @@
       </div>
       <div class="footer-col">
         <h4>
-          Services</h4><RouterLink to ="/service">Handmade Creativity</RouterLink><RouterLink to="/service">Interior
-          Decoration</RouterLink><RouterLink to ="/services">Coffee
-          Lifestyle</RouterLink><RouterLink to ="/service">Fashion Products</RouterLink><RouterLink to="/service">Natural Hair
+          Services</h4><RouterLink to="/services">Handmade Creativity</RouterLink><RouterLink to="/services">Interior
+          Decoration</RouterLink><RouterLink to="/services">Coffee
+          Lifestyle</RouterLink><RouterLink to="/services">Fashion Products</RouterLink><RouterLink to="/services">Natural Hair
           Elegance</RouterLink>
       </div>
       <div class="footer-col">

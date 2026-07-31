@@ -184,7 +184,7 @@
         </div>
     </footer>
 </template>
-<script>
+<script setup>
         const buttons = document.querySelectorAll('.cat-nav button');
         const cards = document.querySelectorAll('.m-card');
         const noResults = document.getElementById('noResults');
@@ -218,7 +218,7 @@
             });
         });
 </script>
-<style>
+<style scoped>
       *,
         *::before,
         *::after {
