@@ -1,4 +1,5 @@
 <template>
+<div class="body">
  <div class="head">
     <div class="header-bar">
       <div class="logo"><img src="/images/aqelogo.png" alt="Logo"></div>
@@ -629,6 +630,7 @@
     </div>
     <div class="footer-bottom"><span>© 2025 AFRICAN QUEEN EMPIRE · TOUS DROITS RÉSERVÉS</span></div>
   </footer>
+</div>  
 </template>
 
 <script setup>
@@ -638,7 +640,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap');
     * {margin: 0;padding: 0;box-sizing: border-box
        }
-    body {
+    .body {
       background: #a46746f4;display: flex;flex-direction: column;justify-content: center;font-family: sans-serif
     }
     .header-bar {position: absolute;top: 0;inset: 0 60px auto;display: flex;justify-content: space-between;align-items: center;z-index: 10;padding: 10px 0
