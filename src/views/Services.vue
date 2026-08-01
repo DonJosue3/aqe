@@ -3,10 +3,10 @@
     <div class="header-bar">
       <div class="logo"><img src="/images/logo.png" alt="Logo"></div>
       <div class="main-nav-container">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'menu' %}">Menu</a>
-        <a href="{% url 'shop' %}">Shop</a>
-        <a href="{% url 'services' %}" class="active">Services</a>
+        <RouterLink to="/home">Home</RouterLink>
+        <RouterLink to="/menu">Menu</RouterLink>
+        <RouterLink to="/shop">Shop</RouterLink>
+        <RouterLink to="/services" class="active">Services</RouterLink>
       </div>
     </div>
 
@@ -250,7 +250,7 @@
               </div>
             </div>
           </div>
-          <a href="{% url 'menu' %}">
+          <RouterLink to="/menu">
             <div class="panel-cta">Voir le menu →</div>
           </a>
         </div>
@@ -422,14 +422,13 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>Navigation</h4><a href="{% url 'home' %}">Accueil</a><a href="{% url 'services' %}">Services</a><a
-          href="{% url 'shop' %}">Shop</a><a href="{% url 'menu' %}">Menu</a>
+        <h4>Navigation</h4><RouterLink to="/home">Accueil</RouterLink><RouterLink to="/services">Services</RouterLink><RouterLink to="/shop">Shop</RouterLink><RouterLink to="/menu">Menu</RouterLink>
       </div>
       <div class="footer-col">
-        <h4>Services</h4><a href="{% url 'services' %}">Handmade Creativity</a><a href="{% url 'services' %}">Interior
-          Decoration</a><a href="{% url 'services' %}">Coffee
-          Lifestyle</a><a href="{% url 'services' %}">Fashion Products</a><a href="{% url 'services' %}">Natural Hair
-          Elegance</a>
+        <h4>Services</h4><RouterLink to="/services">Handmade Creativity</RouterLink><RouterLink to="/services">Interior
+          Decoration</RouterLink><RouterLink to="/services">Coffee
+          Lifestyle</RouterLink><RouterLink to="/services">Fashion Products</RouterLink><RouterLink to="/services">Natural Hair
+          Elegance</RouterLink>
       </div>
       <div class="footer-col">
         <h4>Contacts</h4>

@@ -151,14 +151,19 @@
                 </div>
             </div>
             <div class="footer-col">
-                <h4>Navigation</h4><a href="{% url 'home' %}">Accueil</a><a href="{% url 'services' %}">Services</a><a
-                    href="{% url 'shop' %}">Shop</a><a href="{% url 'menu' %}">Menu</a>
+                <h4>Navigation</h4>
+                <RouterLink to="/images/home">Accueil</RouterLink>
+                <RouterLink to="/images/services">Services</RouterLink>
+                <RouterLink to="/images/shop">Shop</RouterLink>
+                <RouterLink to="/images/menu">Menu</RouterLink>
             </div>
             <div class="footer-col">
-                <h4>Services</h4><a href="{% url 'services' %}">Handmade Creativity</a><a
-                    href="{% url 'services' %}">Interior Decoration</a><a href="{% url 'services' %}">Coffee
-                    Lifestyle</a><a href="{% url 'services' %}">Fashion Products</a><a
-                    href="{% url 'services' %}">Natural Hair Elegance</a>
+                <h4>Services</h4>
+                <RouterLink to ="/images/services">Handmade Creativity</RouterLink>
+                <RouterLink to ="/images/services">Interior Decoration</RouterLink>
+                <RouterLink to ="/images/services">Coffee Lifestyle</RouterLink>
+                <RouterLink to ="/images/services">Fashion Products</RouterLink>
+                <RouterLink to ="/images/services">Natural Hair Elegance</RouterLink>
             </div>
             <div class="footer-col">
                 <h4>Contacts</h4>
