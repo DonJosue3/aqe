@@ -3,10 +3,10 @@
         <div class="header-bar">
             <div class="logo"><img src="/images/logo.png" alt="Logo"></div>
             <div class="main-nav-container">
-                <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'services' %}">Services</a>
-                <a href="{% url 'menu' %}">Menu</a>
-                <a href="{% url 'shop' %}" class="active">Shop</a>
+                <RouterLink to ="/">Home</RouterLink>
+                <RouterLink to ="/services">Services</RouterLink>
+                <RouterLink to ="/menu">Menu</RouterLink>
+                <RouterLink to ="/shop" class="active">Shop</RouterLink>
             </div>
         </div>
         <section class="m-hero">
