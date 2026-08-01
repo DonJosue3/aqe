@@ -19,7 +19,7 @@ collections:
 
         fields:
           - label: "Produits"
-            name: ""
+            name: "products"
             widget: "list"
             summary: "{{fields.name}} - {{fields.price}}"
 
