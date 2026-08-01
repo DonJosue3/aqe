@@ -23,13 +23,13 @@
 
     <button
         :class="{ active: selectedCategory === 'mode' }"
-        @click="changeCategory('mode')">
+        @click="changeCategory('deco')">
         Interior Design
     </button>
 
     <button
         :class="{ active: selectedCategory === 'deco' }"
-        @click="changeCategory('deco')">
+        @click="changeCategory('mode')">
         Fashion Design
     </button>
 
@@ -45,7 +45,7 @@
 >
 
     <img
-        :src="product.image"
+        :src="'${import.meta.env.BASE_URL}${product.image}'"
         :alt="product.name"
     >
         <div class="m-overlay">
