@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Robe Kente",
+    "category": "mode",
+    "label": "Mode",
+    "price": "35 000 BIF",
+    "image": "images/products/robe-kente.jpg",
+    "size": "tall"
+  },
+  {
+    "id": 2,
+    "name": "Vase Artisanal",
+    "category": "deco",
+    "label": "Décoration",
+    "price": "18 000 BIF",
+    "image": "images/products/vase.jpg",
+    "size": "short"
+  }
+]

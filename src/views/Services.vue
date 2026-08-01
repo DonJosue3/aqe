@@ -252,7 +252,7 @@
           </div>
           <RouterLink to="/menu">
             <div class="panel-cta">Voir le menu →</div>
-          </a>
+          </RouterLink>
         </div>
       </div>
     </div>

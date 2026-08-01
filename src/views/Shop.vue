@@ -9,120 +9,82 @@
                 <a href="{% url 'shop' %}" class="active">Shop</a>
             </div>
         </div>
-
         <section class="m-hero">
             <h1>Notre Boutique</h1>
         </section>
     </div>
-    <nav class="cat-nav" id="catNav">
-        <button class="active" data-filter="all">Tout</button>
-        <button data-filter="mode">Interior Design</button>
-        <button data-filter="deco">Fashion Design</button>
-    </nav>
+<nav class="cat-nav">
+
+    <button
+        :class="{ active: selectedCategory === 'all' }"
+        @click="changeCategory('all')">
+        Tout
+    </button>
+
+    <button
+        :class="{ active: selectedCategory === 'mode' }"
+        @click="changeCategory('mode')">
+        Interior Design
+    </button>
+
+    <button
+        :class="{ active: selectedCategory === 'deco' }"
+        @click="changeCategory('deco')">
+        Fashion Design
+    </button>
+
+</nav>
 
     <section class="masonry-wrap">
         <div class="masonry" id="masonryGrid">
+         <div
+    v-for="product in filteredProducts"
+    :key="product.id"
+    :class="['m-card', product.size]"
+    :data-cat="product.category"
+>
 
-            <div class="m-card tall" data-cat="mode">
-                <img src="https://images.pexels.com/photos/20167932/pexels-photo-20167932.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Robe Kente">
-                <div class="m-overlay">
-                    <div class="m-cat">Mode</div>
-                    <div class="m-name">Robe Kente</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
-            </div>
+    <img
+        :src="product.image"
+        :alt="product.name"
+    >
+    <p>{{ product.image }}</p>
+    <div class="m-overlay">
 
-            <div class="m-card short" data-cat="deco">
-                <img src="https://images.pexels.com/photos/6775667/pexels-photo-6775667.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Vase Artisanal">
-                <div class="m-overlay">
-                    <div class="m-cat">Décoration</div>
-                    <div class="m-name">Vase Artisanal</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
-            </div>
+        <div class="m-cat">
+            {{ product.label }}
+        </div>
 
-            <div class="m-card tall" data-cat="cafe">
-                <img src="https://images.pexels.com/photos/162886/coffee-glass-beverage-coffee-mug-162886.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Blend Premium">
-                <div class="m-overlay">
-                    <div class="m-cat">Café</div>
-                    <div class="m-name">Blend Premium</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
-            </div>
+        <div class="m-name">
+            {{ product.name }}
+        </div>
 
-            <div class="m-card short" data-cat="mode">
-                <img src="https://images.pexels.com/photos/20164064/pexels-photo-20164064.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Écharpe Bogolan">
-                <div class="m-overlay">
-                    <div class="m-cat">Mode</div>
-                    <div class="m-name">Écharpe Bogolan</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
-            </div>
+        <div class="m-row">
 
-            <div class="m-card short" data-cat="hair">
-                <img src="https://images.pexels.com/photos/3992876/pexels-photo-3992876.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Natural Hair Kit">
-                <div class="m-overlay">
-                    <div class="m-cat">Hair Care</div>
-                    <div class="m-name">Natural Hair Kit</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
-            </div>
+            <span class="m-price">
+                {{ product.price }}
+            </span>
 
-            <div class="m-card tall" data-cat="deco">
-                <img src="https://images.pexels.com/photos/6775667/pexels-photo-6775667.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Coussin Wax">
-                <div class="m-overlay">
-                    <div class="m-cat">Décoration</div>
-                    <div class="m-name">Coussin Wax</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="m-card short" data-cat="mode">
-                <img src="https://images.pexels.com/photos/20167932/pexels-photo-20167932.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Turban Wax">
-                <div class="m-overlay">
-                    <div class="m-cat">Mode</div>
-                    <div class="m-name">Turban Wax</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="m-card tall" data-cat="cafe">
-                <img src="https://images.pexels.com/photos/162886/coffee-glass-beverage-coffee-mug-162886.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Coffret Dégustation">
-                <div class="m-overlay">
-                    <div class="m-cat">Café</div>
-                    <div class="m-name">description du produit</div>
-                    <div class="m-row"><span class="m-price">xx xxx Bif</span>
-                        <div class="m-add"><i class="ti ti-plus"></i></div>
-                    </div>
-                </div>
+            <div
+                class="m-add"
+                @click="addToCart(product)"
+            >
+                <i class="ti ti-plus"></i>
             </div>
 
         </div>
 
-        <p class="no-results" id="noResults">Aucun produit dans cette catégorie pour le moment.</p>
+    </div>
 
+</div>
+
+        </div>
+
+        <p
+    v-if="filteredProducts.length === 0"
+    class="no-results">
+            Aucun produit dans cette categories.
+         </p>   
         <div class="load-more"><button>Voir plus de produits</button></div>
     </section>
     <footer class="site-footer">
@@ -189,40 +151,41 @@
         </div>
     </footer>
 </template>
+
 <script setup>
-        const buttons = document.querySelectorAll('.cat-nav button');
-        const cards = document.querySelectorAll('.m-card');
-        const noResults = document.getElementById('noResults');
+import { ref, computed, onMounted } from 'vue'
 
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                buttons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                let visibleCount = 0;
+const products = ref([])
+const selectedCategory = ref('all')
 
-                cards.forEach(card => {
-                    const match = filter === 'all' || card.dataset.cat === filter;
-                    card.style.display = match ? '' : 'none';
-                    if (match) visibleCount++;
-                });
+const filteredProducts = computed(() => {
+  if (selectedCategory.value === 'all') {
+    return products.value
+  }
 
-                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-            });
-        });
+  return products.value.filter(
+    product => product.category === selectedCategory.value
+  )
+})
 
-        // Ajout au panier (placeholder — à connecter à votre logique panier réelle)
-        document.querySelectorAll('.m-add').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const card = btn.closest('.m-card');
-                const name = card.querySelector('.m-name').textContent;
-                console.log('Ajouté au panier :', name);
-                btn.innerHTML = '<i class="ti ti-check"></i>';
-                setTimeout(() => { btn.innerHTML = '<i class="ti ti-plus"></i>'; }, 1200);
-            });
-        });
+async function loadProducts() {
+  const response = await fetch(`${import.meta.env.BASE_URL}data/products.json`)
+  products.value = await response.json()
+}
+
+function changeCategory(category) {
+  selectedCategory.value = category
+}
+
+function addToCart(product) {
+  console.log("Ajouté :", product.name)
+}
+
+onMounted(() => {
+  loadProducts()
+})
 </script>
+
 <style scoped>
       *,
         *::before,
