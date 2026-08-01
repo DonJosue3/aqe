@@ -45,7 +45,7 @@
 >
 
     <img
-        :src="'${import.meta.env.BASE_URL}${product.image}'"
+        :src="baseUrl + product.image"
         :alt="product.name"
     >
         <div class="m-overlay">
@@ -156,7 +156,7 @@ import { ref, computed, onMounted } from 'vue'
 
 const products = ref([])
 const selectedCategory = ref('all')
-
+const baseUrl = import.meta.env.BASE_URL;
 const filteredProducts = computed(() => {
   if (selectedCategory.value === 'all') {
     return products.value
@@ -169,7 +169,8 @@ const filteredProducts = computed(() => {
 
 async function loadProducts() {
   const response = await fetch(`${import.meta.env.BASE_URL}data/products.json`)
-  products.value = await response.json()
+  const data = await response.json()
+  products.value = data.products
 }
 
 function changeCategory(category) {
