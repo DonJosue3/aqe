@@ -48,8 +48,7 @@
         :src="product.image"
         :alt="product.name"
     >
-    <p>{{ product.image }}</p>
-    <div class="m-overlay">
+        <div class="m-overlay">
 
         <div class="m-cat">
             {{ product.label }}
