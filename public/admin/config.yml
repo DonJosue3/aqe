@@ -10,7 +10,7 @@ site_url: https://donjosue3.github.io/aqe
 display_url: https://donjosue3.github.io/aqe
 
 media_folder: "public/images/products"
-public_folder: "/aqe/images/products"
+public_folder: "/images/products"
 
 collections:
   - name: "products"
