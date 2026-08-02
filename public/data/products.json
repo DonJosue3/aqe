@@ -7,7 +7,7 @@
       "label": "Mode",
       "price": "35 000 BIF",
       "description": "",
-      "image": "images/products/robe-kente.jpg",
+      "image": "/images/products/robe-kente.jpg",
       "size": "tall"
     },
     {
@@ -17,7 +17,7 @@
       "label": "Décoration",
       "price": "18 000 BIF",
       "description": "",
-      "image": "images/products/vase.jpg",
+      "image": "/images/products/vase.jpg",
       "size": "short"
     }
   ]
