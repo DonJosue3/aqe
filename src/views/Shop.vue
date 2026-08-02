@@ -45,7 +45,7 @@
 >
 
     <img
-        :src="baseUrl + product.image"
+        :src="imageUrl(product.image)"
         :alt="product.name"
     >
         <div class="m-overlay">
@@ -166,7 +166,16 @@ const filteredProducts = computed(() => {
     product => product.category === selectedCategory.value
   )
 })
+function imageUrl(path) {
+  if (!path) return "";
 
+  // Si le chemin commence par "/", on retire ce "/" avant d'ajouter BASE_URL
+  if (path.startsWith("/")) {
+    return import.meta.env.BASE_URL + path.substring(1);
+  }
+
+  return import.meta.env.BASE_URL + path;
+}
 async function loadProducts() {
   const response = await fetch(`${import.meta.env.BASE_URL}data/products.json`)
   const data = await response.json()
