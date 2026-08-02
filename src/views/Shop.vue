@@ -156,7 +156,7 @@ import { ref, computed, onMounted } from 'vue'
 
 const products = ref([])
 const selectedCategory = ref('all')
-const baseUrl = import.meta.env.BASE_URL;
+
 const filteredProducts = computed(() => {
   if (selectedCategory.value === 'all') {
     return products.value
@@ -166,16 +166,11 @@ const filteredProducts = computed(() => {
     product => product.category === selectedCategory.value
   )
 })
+
 function imageUrl(path) {
-  if (!path) return "";
-
-  // Si le chemin commence par "/", on retire ce "/" avant d'ajouter BASE_URL
-  if (path.startsWith("/")) {
-    return import.meta.env.BASE_URL + path.substring(1);
-  }
-
-  return import.meta.env.BASE_URL + path;
+  return import.meta.env.BASE_URL + path.replace(/^\//, "");
 }
+
 async function loadProducts() {
   const response = await fetch(`${import.meta.env.BASE_URL}data/products.json`)
   const data = await response.json()

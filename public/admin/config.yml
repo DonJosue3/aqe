@@ -5,6 +5,10 @@ backend:
   base_url: https://aqe-oauth.ishakaryayodonjosue.workers.dev
   auth_endpoint: auth
 
+
+site_url: https://donjosue3.github.io/aqe
+display_url: https://donjosue3.github.io/aqe
+
 media_folder: "public/images/products"
 public_folder: "/images/products"
 
