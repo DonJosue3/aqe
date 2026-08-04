@@ -118,14 +118,14 @@
                 <RouterLink to="/images/shop">Shop</RouterLink>
                 <RouterLink to="/images/menu">Menu</RouterLink>
             </div>
-            <div class="footer-col">
+            <!--div class="footer-col">
                 <h4>Services</h4>
                 <RouterLink to ="/images/services">Handmade Creativity</RouterLink>
                 <RouterLink to ="/images/services">Interior Decoration</RouterLink>
                 <RouterLink to ="/images/services">Coffee Lifestyle</RouterLink>
                 <RouterLink to ="/images/services">Fashion Products</RouterLink>
                 <RouterLink to ="/images/services">Natural Hair Elegance</RouterLink>
-            </div>
+            </div-->
             <div class="footer-col">
                 <h4>Contacts</h4>
                 <div class="footer-contact-item">

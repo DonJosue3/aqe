@@ -642,11 +642,11 @@
       <div class="footer-col">
         <h4>Navigation</h4><RouterLink to ="/home">Accueil</RouterLink><RouterLink to ="/services">Services</RouterLink><RouterLink to="/shop">Shop</RouterLink><RouterLink to ="/menu">Menu</RouterLink>
       </div>
-      <div class="footer-col">
+      <!--div class="footer-col">
         <h4>Services</h4><RouterLink to ="/services">Handmade Creativity</RouterLink><RouterLink to ="/services">Interior
           Decoration</RouterLink><RouterLink to ="/services">Coffee Lifestyle</RouterLink><RouterLink to ="/services">Fashion
           Products</RouterLink><RouterLink to ="/services">Natural Hair Elegance</RouterLink>
-      </div>
+          </div-->
       <div class="footer-col">
         <h4>Contacts</h4>
         <div class="footer-contact-item"><i class="ti ti-map-pin"></i><span>Bujumbura, Burundi</span></div>
