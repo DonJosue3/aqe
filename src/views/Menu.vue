@@ -2,10 +2,38 @@
 <div class="body">
  <div class="head">
     <div class="header-bar">
-      <div class="logo"><img src="/images/aqelogo.png" alt="Logo"></div>
-      <div class="main-nav-container"><RouterLink to ="/home">Home</RouterLink><RouterLink to="/menu"
-          class="active">Menu</RouterLink><RouterLink to ="/shop">Shop</RouterLink><RouterLink to ="/services">Services</RouterLink></div>
+
+      <div class="logo">
+        <img src="/images/aqelogo.png" alt="Logo">
+      </div>
+
+      <!-- Bouton hamburger -->
+      <button class="menu-btn" @click="menuOpen = !menuOpen">
+        ☰
+      </button>
+
+      <!-- Navigation -->
+      <div
+        class="main-nav-container"
+        :class="{ show: menuOpen }"
+      >
+        <RouterLink @click="menuOpen = false" to="/home">Home</RouterLink>
+
+        <RouterLink
+          @click="menuOpen = false"
+          to="/menu"
+          class="active"
+        >
+          Menu
+        </RouterLink>
+
+        <RouterLink @click="menuOpen = false" to="/shop">Shop</RouterLink>
+
+        <RouterLink @click="menuOpen = false" to="/services">Services</RouterLink>
+      </div>
+
     </div>
+
     <section class="m-hero">
       <h1>Our Menu</h1>
     </section>
@@ -633,7 +661,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 
+const menuOpen = ref(false)
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -757,12 +787,7 @@
     }
     .footer-bottom p {color: #666;font-size: 13px;letter-spacing: 1px
     }
-    @media (max-width:768px) {
-      .footer-container {grid-template-columns: 1fr;gap: 50px
-      }
-      .footer-links-group {grid-template-columns: repeat(2, 1fr)
-      }
-    }
+    
     .site-footer {width: 100%;background: #ebcdb6a8;padding: 60px 6vw 0
     }
     .footer-top {display: grid;grid-template-columns: 1.8fr 1fr 1fr 1fr;gap: 40px;padding-bottom: 50px;border-bottom: 1px solid #111
@@ -810,5 +835,158 @@
     .footer-contact-item span {transition: .3s
     }
     .footer-contact-item:hover span {color: #d4a04a
+    }
+     @media (max-width:768px) {
+      .logo img {
+        width: 18vw;
+        height: auto;
+      }
+
+      .head {
+        width: 100vw;
+        height: max-content;
+      }
+
+      .menu-toggle {
+        margin-right: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main-nav-container {
+
+        position: absolute;
+        top: 90px;
+        right: 20px;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        background: #a46746f4;
+        border-radius: 18px;
+        padding: 20px;
+        gap: 18px;
+        transform: scale(.9);
+        opacity: 0;
+        visibility: hidden;
+        transition: .35s;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
+
+      }
+
+      .main-nav-container.open {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+
+      .main-nav-container a {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+      }
+
+      .footer-top {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .site-footer {
+        padding-right: 0vw;
+        width:100vw;
+      }
+
+     
+      
+      .premier,
+      .second,
+      .three {
+        width: 100vw;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+
+      }
+
+      .menuone {
+        display:flex;
+        align-items: flex-start;
+        gap:4vw;
+        width:90vw;
+        height: max-content;
+        margin: 0px;
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+      }
+      .cardtrois,
+      .cardquatre,
+      .cardcinq,
+      .carddeux,
+      .cardun {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 3vw;
+        margin-right: 3vw;
+        margin-top: 3vw;
+        width: 94vw;
+        height: max-content;
+        
+      }
+
+      .image1 {
+        width: 40vw;
+        height: auto;
+        top: -14vw;
+        left: -14vw;
+      }
+      .image2{
+        width:40vw;
+        height: auto;
+        bottom: -14vw;
+        left: 64vw;
+      }
+
+      .un {
+        
+        padding-top: 2vw;
+        box-sizing: border-box;
+        padding-top: 20vw;
+      }
+
+      .deux {
+        height: max-content;
+        box-sizing: border-box;
+      }
+
+    }
+    @media(max-width:500px){
+
+      .image1{
+        width: 50vw;
+        height: auto;
+        top: -20vw;
+        left: -20vw;
+      }
+      .menutoo,
+      .menuone{
+        gap:1vw;
+        padding-left:2vw;
+      }
+      .menu-item .nom {
+      display: flex;
+      align-items: center;
+      gap: 0.5vw;
+    }
+      .trois,
+      .un{
+        padding-right: 0vw;
+        padding-left: 0vw;
+      }
+      .quatre,
+      .deux{
+        margin-left:1vw;
+      }
+      
     }
 </style>
