@@ -411,13 +411,7 @@
                   <div class="point"></div>Crepes au Chocolat (4)
                 </div><span class="prix">20.000 fbu</span>
               </div>
-
-            </div>
-          </div><img class="image8" src="/images/p1.png" alt="">
-          <div class="huit">
-            <h1>Patisseries</h1>
-            <div class="line1"></div>
-            <div class="menu-item">
+               <div class="menu-item">
               <div class="nom">
                 <div class="point"></div>Pain Etoile
               </div><span class="prix">8.000 fbu</span>
@@ -432,15 +426,23 @@
                 <div class="point"></div>Tartelettes à la crème
               </div><span class="prix">25.000 fbu</span>
             </div>
+            
+            
+
+            </div>
+          </div><img class="image8" src="/images/p1.png" alt="">
+          <div class="huit">
+            <h1>Patisseries</h1>
+            <div class="line1"></div>
+           <div class="menu-item">
+              <div class="nom">
+                <div class="point"></div>Kish
+              </div><span class="prix">20.000 fbu</span>
+            </div>
             <div class="menu-item">
               <div class="nom">
                 <div class="point"></div>Chapati
               </div><span class="prix">2.500 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Kish
-              </div><span class="prix">20.000 fbu</span>
             </div>
             <div class="menu-item">
               <div class="nom">
@@ -1512,6 +1514,19 @@ h1 {
     width:38vw;
     height:43vw;
   }
+  .image8{
+    width:34vw;
+    height:auto;
+    bottom:-15vw
+  }
+  .image9{
+    width:34vw;
+    height:auto;
+  }
+  .image10{
+    width:34vw;
+    height: auto;
+  }
   .menuquatre,
   .menuthree,
   .menutoo,
@@ -1534,6 +1549,7 @@ h1 {
     padding-right: 0vw;
     padding-left: 0vw;
   }
+  .huit,
   .six{
     margin-left:2vw
   }
