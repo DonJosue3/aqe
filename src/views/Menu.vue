@@ -1526,7 +1526,10 @@ h1 {
   .image10{
     width:34vw;
     height: auto;
+    top: -13vw;
+    right: -20px;
   }
+  .menucinq,
   .menuquatre,
   .menuthree,
   .menutoo,
@@ -1549,11 +1552,11 @@ h1 {
     padding-right: 0vw;
     padding-left: 0vw;
   }
+  .dix,
   .huit,
   .six{
     margin-left:2vw
   }
-  
   .quatre,
   .deux {
     margin-left: 1vw;
