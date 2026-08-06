@@ -370,9 +370,7 @@
         <div class="menuquatre"><img class="image7" src="/images/p2.png" alt="">
           <div class="sept">
             <div class="deuxdeux">
-              <div class="titre">
-                <h1>Patisseries</h1>
-              </div>
+              
               <div class="menu-item">
                 <div class="nom">
                   <div class="point"></div>Pain Perdu
@@ -1478,6 +1476,14 @@ h1 {
     top: -20vw;
     left: -20vw;
   }
+  .deuxdeux{
+    width: 100%;
+    height: max-content;
+    background: #e5d3c5;
+    border: #333 solid 1px;
+    display: flex;
+    flex-direction: column
+  }
   .image2{
     width:40vw;
     height: auto;
@@ -1487,9 +1493,9 @@ h1 {
   .image3{
     width:39vw;
     height: auto;
-    bottom:-10vw;}
+    bottom:-10vw;
+  }
   .image5,
-  .image7,
   .image4{
     width:39vw;
     height:auto;
@@ -1502,6 +1508,11 @@ h1 {
     width:39vw;
     height:55vw;
   }
+  .image7{
+    width:38vw;
+    height:43vw;
+  }
+  .menuquatre,
   .menuthree,
   .menutoo,
   .menuone {
@@ -1517,16 +1528,25 @@ h1 {
   .prix{
     margin-left:0px;
   }
+  
   .trois,
   .un {
     padding-right: 0vw;
     padding-left: 0vw;
   }
-
+  .six{
+    margin-left:2vw
+  }
+  
   .quatre,
   .deux {
     margin-left: 1vw;
   }
-
+}
+@media(max-width:300px){
+  .menu-item  {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>
