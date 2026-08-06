@@ -6,13 +6,11 @@
         <button id="menuToggle" class="menu-toggle">
           <i class="ti ti-menu-2"></i>
         </button>
-
         <div id="mainNav" class="main-nav-container">
           <a href="{% url 'home' %}">Home</a>
           <a href="{% url 'services' %}">Services</a>
           <a href="{% url 'menu' %}">Menu</a>
           <a href="{% url 'shop' %}">Shop</a>
-
         </div>
       </div>
       <div class="m-hero">
@@ -79,8 +77,7 @@
             </div>
           </div>
           <div class="deux">
-            <h1>Plats du jour</h1>
-            <div class="line1"></div>
+            
             <div class="menu-item">
               <div class="nom">
                 <div class="point"></div>Riz cantonais
@@ -199,9 +196,7 @@
           </div><img class="image4" src="/images/ns2.png" alt="">
           <div class="quatre">
             <div class="deuxdeux">
-              <div class="titre">
-                <h1>Nos specialites</h1>
-              </div>
+              
               <div class="menu-item">
                 <div class="nom">
                   <div class="point"></div>Quesadilla au boeuf
@@ -1412,7 +1407,7 @@ h1 {
     flex-direction: column;
 
   }
-
+  .menutoo,
   .menuone {
     display: flex;
     align-items: flex-start;
@@ -1453,7 +1448,14 @@ h1 {
     bottom: -14vw;
     left: 64vw;
   }
-
+  .image3{
+    width:40vw;
+    height:auto;
+  }
+  .image4{
+    width:40vw;
+    height:auto;
+  }
   .un {
 
     padding-top: 2vw;
@@ -1476,7 +1478,31 @@ h1 {
     top: -20vw;
     left: -20vw;
   }
-
+  .image2{
+    width:40vw;
+    height: auto;
+    bottom: -14vw;
+    left: 64vw;
+  }
+  .image3{
+    width:39vw;
+    height: auto;
+    bottom:-10vw;}
+  .image5,
+  .image7,
+  .image4{
+    width:39vw;
+    height:auto;
+  }
+  .image5{
+    bottom:-10vw;
+  }
+  .image6{
+    top:-19vw;
+    width:39vw;
+    height:55vw;
+  }
+  .menuthree,
   .menutoo,
   .menuone {
     gap: 1vw;
@@ -1488,7 +1514,9 @@ h1 {
     align-items: center;
     gap: 0.5vw,
   }
-
+  .prix{
+    margin-left:0px;
+  }
   .trois,
   .un {
     padding-right: 0vw;
