@@ -1336,12 +1336,54 @@ h1 {
   color: #d4a04a
 }
 
-@media (max-width:768px) {
+@media (max-width:850px) {
   .logo img {
     width: 18vw;
     height: auto;
   }
-
+  
+  .image3{
+    width:29vw;
+    height:auto;
+    bottom:-9vw;
+  }
+  .image4{
+    width:27vw;
+    height:auto;
+    top:-10vw;
+  }
+  .image5{
+    width:30vw;
+    height:auto;
+    bottom:-11vw;
+  }
+  .image6{
+    top:-19vw;
+    width:30vw;
+    height:42vw;
+  }
+  .image7{
+    width:28vw;
+    height:auto;
+    top:-14vw;
+  }
+  .image8{
+    width:34vw;
+    height:auto;
+    bottom:-15vw
+  }
+  .image9{
+    width:22vw;
+    height:auto;
+    bottom:-17vw;
+    left:-5vw;
+  }
+  .image10{
+    width:25vw;
+    height: auto;
+    top: -13vw;
+    right: -20px;
+  }
   .head {
     width: 100vw;
     height: max-content;
@@ -1396,8 +1438,6 @@ h1 {
     width: 100vw;
   }
 
-
-
   .premier,
   .second,
   .three {
@@ -1448,16 +1488,8 @@ h1 {
     bottom: -14vw;
     left: 64vw;
   }
-  .image3{
-    width:40vw;
-    height:auto;
-  }
-  .image4{
-    width:40vw;
-    height:auto;
-  }
+  
   .un {
-
     padding-top: 2vw;
     box-sizing: border-box;
     padding-top: 20vw;

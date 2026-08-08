@@ -350,13 +350,13 @@
         <RouterLink to="/shop">Shop</RouterLink>
         <RouterLink to="/menu">Menu</RouterLink>
       </div>
-      <div class="footer-col">
+      <!--div class="footer-col">
         <h4>
           Services</h4><RouterLink to="/services">Handmade Creativity</RouterLink><RouterLink to="/services">Interior
           Decoration</RouterLink><RouterLink to="/services">Coffee
           Lifestyle</RouterLink><RouterLink to="/services">Fashion Products</RouterLink><RouterLink to="/services">Natural Hair
           Elegance</RouterLink>
-      </div>
+      </div-->
       <div class="footer-col">
         <div class="footer-col">
           <h4>Contacts</h4>
@@ -1822,5 +1822,15 @@ onMounted(()=> {
 
     .footer-contact-item:hover span {
       color: #d4a04a;
+    }
+    @media(max-width:500px) {
+      .logo img{
+        width:18vw;
+        height:auto;
+      }
+      .content-box{
+        width:100vw;
+        height:50vw;
+      }
     }
 </style>
