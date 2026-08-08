@@ -1558,13 +1558,9 @@ h1 {
 
   .mobile-overlay {
     position: fixed;
-
     inset: 0;
-
     background: rgba(0, 0, 0, 0.55);
-
     z-index: 2000;
-
     display: flex;
     justify-content: flex-end;
   }
@@ -1575,20 +1571,14 @@ h1 {
 ========================= */
 
   .mobile-drawer {
-    width: 300px;
+    width: 60vw;
     max-width: 85vw;
-
-    height: 100vh;
-
+    height: max-content;
     background: #ffffff;
-
     padding: 30px 25px;
-
     display: flex;
     flex-direction: column;
-
     box-sizing: border-box;
-
     overflow-y: auto;
   }
 
@@ -1714,8 +1704,6 @@ h1 {
   .drawer-leave-to .mobile-drawer {
     transform: translateX(100%);
   }
-
-
   /* =========================
    RESPONSIVE
 ========================= */
