@@ -1633,7 +1633,13 @@ onMounted(()=> {
       color: #d4a04a
     }
 
-    @media(max-width:992px) {
+    @media(max-width:900px) {
+      .front-page-overlay{
+        height:70vh;
+      }
+      .bg-slide{
+        height:70vh;
+      }
       .header-bar {
         padding: 0 40px
       }
