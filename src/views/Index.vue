@@ -1634,12 +1634,7 @@ onMounted(()=> {
     }
 
     @media(max-width:900px) {
-      .front-page-overlay{
-        height:70vh;
-      }
-      .bg-slide{
-        height:70vh;
-      }
+      
       .header-bar {
         padding: 0 40px
       }
