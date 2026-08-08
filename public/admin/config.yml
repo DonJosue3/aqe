@@ -1,0 +1,68 @@
+backend:
+  name: github
+  repo: DonJosue3/aqe
+  branch: main
+  base_url: https://aqe-oauth.ishakaryayodonjosue.workers.dev
+  auth_endpoint: auth
+
+
+site_url: https://donjosue3.github.io/aqe
+display_url: https://donjosue3.github.io/aqe
+
+media_folder: "public/images/products"
+public_folder: "/images/products"
+
+collections:
+  - name: "products"
+    label: "Produits"
+
+    files:
+      - label: "Boutique"
+        name: "products"
+        file: "public/data/products.json"
+
+        fields:
+          - label: "Produits"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} - {{fields.price}}"
+
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "number"
+
+              - label: "Nom"
+                name: "name"
+                widget: "string"
+
+              - label: "Catégorie"
+                name: "category"
+                widget: "select"
+                options:
+                  - mode
+                  - deco
+
+              - label: "Label"
+                name: "label"
+                widget: "string"
+
+              - label: "Prix"
+                name: "price"
+                widget: "string"
+
+              - label: "Description"
+                name: "description"
+                widget: "text"
+                required: false
+
+              - label: "Image"
+                name: "image"
+                widget: "image"
+
+              - label: "Taille"
+                name: "size"
+                widget: "select"
+                options:
+                  - short
+                  - tall
