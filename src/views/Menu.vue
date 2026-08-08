@@ -2,16 +2,61 @@
   <div class="body">
     <div class="head">
       <div class="header-bar">
-        <div class="logo"><img src="/images/aqelogo.png" alt="Logo"></div>
-        <button id="menuToggle" class="menu-toggle">
-          <i class="ti ti-menu-2"></i>
-        </button>
-        <div id="mainNav" class="main-nav-container">
-          <a href="{% url 'home' %}">Home</a>
-          <a href="{% url 'services' %}">Services</a>
-          <a href="{% url 'menu' %}">Menu</a>
-          <a href="{% url 'shop' %}">Shop</a>
+        <div class="logo">
+          <img src="/images/aqelogo.png" alt="Logo">
         </div>
+
+        <!-- Navigation desktop -->
+        <nav class="main-nav-container">
+          <RouterLink to="/home">Home</RouterLink>
+          <RouterLink to="/services">Services</RouterLink>
+          <RouterLink to="/menu">Menu</RouterLink>
+          <RouterLink to="/shop">Shop</RouterLink>
+        </nav>
+
+        <!-- Bouton hamburger -->
+        <button class="hamburger" @click="mobileOpen = true" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Menu mobile -->
+        <Transition name="drawer">
+          <div v-if="mobileOpen" class="mobile-overlay" @click.self="mobileOpen = false">
+            <div class="mobile-drawer">
+
+              <button class="drawer-close" @click="mobileOpen = false" aria-label="Fermer">
+                ✕
+              </button>
+
+              <div class="drawer-logo">
+                <img src="/images/aqelogo.png" alt="African Queen Empire">
+              </div>
+
+              <nav class="drawer-links">
+
+                <RouterLink to="/home" class="drawer-link" @click="mobileOpen = false">
+                  Home
+                </RouterLink>
+
+                <RouterLink to="/services" class="drawer-link" @click="mobileOpen = false">
+                  Services
+                </RouterLink>
+
+                <RouterLink to="/menu" class="drawer-link" @click="mobileOpen = false">
+                  Menu
+                </RouterLink>
+
+                <RouterLink to="/shop" class="drawer-link" @click="mobileOpen = false">
+                  Shop
+                </RouterLink>
+
+              </nav>
+
+            </div>
+          </div>
+        </Transition>
       </div>
       <div class="m-hero">
         <h1>Our Menu</h1>
@@ -77,7 +122,7 @@
             </div>
           </div>
           <div class="deux">
-            
+
             <div class="menu-item">
               <div class="nom">
                 <div class="point"></div>Riz cantonais
@@ -196,7 +241,7 @@
           </div><img class="image4" src="/images/ns2.png" alt="">
           <div class="quatre">
             <div class="deuxdeux">
-              
+
               <div class="menu-item">
                 <div class="nom">
                   <div class="point"></div>Quesadilla au boeuf
@@ -370,7 +415,7 @@
         <div class="menuquatre"><img class="image7" src="/images/p2.png" alt="">
           <div class="sept">
             <div class="deuxdeux">
-              
+
               <div class="menu-item">
                 <div class="nom">
                   <div class="point"></div>Pain Perdu
@@ -411,30 +456,30 @@
                   <div class="point"></div>Crepes au Chocolat (4)
                 </div><span class="prix">20.000 fbu</span>
               </div>
-               <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Pain Etoile
-              </div><span class="prix">8.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Tarte aux Fruits
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Tartelettes à la crème
-              </div><span class="prix">25.000 fbu</span>
-            </div>
-            
-            
+              <div class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>Pain Etoile
+                </div><span class="prix">8.000 fbu</span>
+              </div>
+              <div class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>Tarte aux Fruits
+                </div><span class="prix">15.000 fbu</span>
+              </div>
+              <div class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>Tartelettes à la crème
+                </div><span class="prix">25.000 fbu</span>
+              </div>
+
+
 
             </div>
           </div><img class="image8" src="/images/p1.png" alt="">
           <div class="huit">
             <h1>Patisseries</h1>
             <div class="line1"></div>
-           <div class="menu-item">
+            <div class="menu-item">
               <div class="nom">
                 <div class="point"></div>Kish
               </div><span class="prix">20.000 fbu</span>
@@ -642,8 +687,7 @@
 
 <script setup>
 import { ref } from 'vue'
-
-const menuOpen = ref(false)
+const mobileOpen = ref(false)
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -1316,7 +1360,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 2px;
   color: #000;
   font-size: .82rem;
   line-height: 1.6
@@ -1336,72 +1380,102 @@ h1 {
   color: #d4a04a
 }
 
+
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  transition: all .3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 @media (max-width:850px) {
+  .hamburger {
+    display: flex;
+  }
+
   .logo img {
     width: 18vw;
     height: auto;
   }
-  
-  .image3{
-    width:29vw;
-    height:auto;
-    bottom:-9vw;
+
+  .image3 {
+    width: 29vw;
+    height: auto;
+    bottom: -9vw;
   }
-  .image4{
-    width:27vw;
-    height:auto;
-    top:-10vw;
+
+  .image4 {
+    width: 27vw;
+    height: auto;
+    top: -10vw;
   }
-  .image5{
-    width:30vw;
-    height:auto;
-    bottom:-11vw;
+
+  .image5 {
+    width: 30vw;
+    height: auto;
+    bottom: -11vw;
   }
-  .image6{
-    top:-19vw;
-    width:30vw;
-    height:42vw;
+
+  .image6 {
+    top: -19vw;
+    width: 30vw;
+    height: 42vw;
   }
-  .image7{
-    width:28vw;
-    height:auto;
-    top:-14vw;
+
+  .image7 {
+    width: 28vw;
+    height: auto;
+    top: -14vw;
   }
-  .image8{
-    width:34vw;
-    height:auto;
-    bottom:-15vw
+
+  .image8 {
+    width: 34vw;
+    height: auto;
+    bottom: -15vw
   }
-  .image9{
-    width:22vw;
-    height:auto;
-    bottom:-17vw;
-    left:-5vw;
+
+  .image9 {
+    width: 22vw;
+    height: auto;
+    bottom: -17vw;
+    left: -5vw;
   }
-  .image10{
-    width:25vw;
+
+  .image10 {
+    width: 25vw;
     height: auto;
     top: -13vw;
     right: -20px;
   }
+
   .head {
     width: 100vw;
     height: max-content;
   }
 
-  .menu-toggle {
-    margin-right: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
 
   .main-nav-container {
 
     position: absolute;
     top: 90px;
     right: 20px;
-    width: 100vw;
+    width: 30vw;
+    height: max-content;
     display: flex;
     flex-direction: column;
     background: #a46746f4;
@@ -1416,15 +1490,251 @@ h1 {
 
   }
 
-  .main-nav-container.open {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
+  /* =========================
+   NAVIGATION DESKTOP
+========================= */
+
+  .main-nav-container {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .main-nav-container a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.25s ease;
+  }
+
+  .main-nav-container a:hover {
+    color: #d4af37;
+  }
+
+
+  /* =========================
+   HAMBURGER
+========================= */
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 8px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 2100;
+  }
+
+  .hamburger span {
+    display: block;
+
+    width: 26px;
+    height: 3px;
+
+    background: #ffffff;
+
+    border-radius: 2px;
+
+    transition: all 0.3s ease;
+  }
+
+
+  /* =========================
+   MOBILE OVERLAY
+========================= */
+
+  .mobile-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    z-index: 2000;
+
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+  /* =========================
+   MOBILE DRAWER
+========================= */
+
+  .mobile-drawer {
+    width: 300px;
+    max-width: 85vw;
+
+    height: 100vh;
+
+    background: #ffffff;
+
+    padding: 30px 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+  }
+
+
+  /* =========================
+   CLOSE BUTTON
+========================= */
+
+  .drawer-close {
+    align-self: flex-end;
+
+    width: 40px;
+    height: 40px;
+
+    background: transparent;
+
+    border: none;
+
+    font-size: 28px;
+
+    color: #333;
+
+    cursor: pointer;
+
+    line-height: 1;
+  }
+
+
+  /* =========================
+   DRAWER LOGO
+========================= */
+
+  .drawer-logo {
+    display: flex;
+
+    justify-content: center;
+
+    margin: 20px 0 35px;
+  }
+
+  .drawer-logo img {
+    width: 150px;
+
+    height: auto;
+
+    object-fit: contain;
+  }
+
+
+  /* =========================
+   DRAWER LINKS
+========================= */
+
+  .drawer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+  }
+
+  .drawer-link {
+    display: block;
+
+    width: 100%;
+
+    padding: 16px 5px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    border-bottom: 1px solid #eeeeee;
+
+    transition:
+      color 0.25s ease,
+      padding-left 0.25s ease;
+  }
+
+  .drawer-link:hover {
+    color: #b08d20;
+
+    padding-left: 12px;
+  }
+
+  .drawer-link.router-link-active {
+    color: #b08d20;
+
+    font-weight: 600;
+  }
+
+
+  /* =========================
+   DRAWER ANIMATION
+   Même principe que GCMBC
+========================= */
+
+  .drawer-enter-active,
+  .drawer-leave-active {
+    transition: opacity 0.25s ease;
+  }
+
+  .drawer-enter-from,
+  .drawer-leave-to {
+    opacity: 0;
+  }
+
+  .drawer-enter-active .mobile-drawer,
+  .drawer-leave-active .mobile-drawer {
+    transition: transform 0.3s ease;
+  }
+
+  .drawer-enter-from .mobile-drawer {
+    transform: translateX(100%);
+  }
+
+  .drawer-leave-to .mobile-drawer {
+    transform: translateX(100%);
+  }
+
+
+  /* =========================
+   RESPONSIVE
+========================= */
+
+  @media (max-width: 900px) {
+
+    .main-nav-container {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
   }
 
   .main-nav-container a {
     margin: 0;
     width: 100%;
+    height: 6vw;
     text-align: left;
   }
 
@@ -1447,6 +1757,7 @@ h1 {
     flex-direction: column;
 
   }
+
   .menutoo,
   .menuone {
     display: flex;
@@ -1488,7 +1799,7 @@ h1 {
     bottom: -14vw;
     left: 64vw;
   }
-  
+
   .un {
     padding-top: 2vw;
     box-sizing: border-box;
@@ -1510,7 +1821,8 @@ h1 {
     top: -20vw;
     left: -20vw;
   }
-  .deuxdeux{
+
+  .deuxdeux {
     width: 100%;
     height: max-content;
     background: #e5d3c5;
@@ -1518,49 +1830,59 @@ h1 {
     display: flex;
     flex-direction: column
   }
-  .image2{
-    width:40vw;
+
+  .image2 {
+    width: 40vw;
     height: auto;
     bottom: -14vw;
     left: 64vw;
   }
-  .image3{
-    width:39vw;
+
+  .image3 {
+    width: 39vw;
     height: auto;
-    bottom:-10vw;
+    bottom: -10vw;
   }
+
   .image5,
-  .image4{
-    width:39vw;
-    height:auto;
+  .image4 {
+    width: 39vw;
+    height: auto;
   }
-  .image5{
-    bottom:-10vw;
+
+  .image5 {
+    bottom: -10vw;
   }
-  .image6{
-    top:-19vw;
-    width:39vw;
-    height:55vw;
+
+  .image6 {
+    top: -19vw;
+    width: 39vw;
+    height: 55vw;
   }
-  .image7{
-    width:38vw;
-    height:43vw;
+
+  .image7 {
+    width: 38vw;
+    height: 43vw;
   }
-  .image8{
-    width:34vw;
-    height:auto;
-    bottom:-15vw
+
+  .image8 {
+    width: 34vw;
+    height: auto;
+    bottom: -15vw
   }
-  .image9{
-    width:34vw;
-    height:auto;
+
+  .image9 {
+    width: 34vw;
+    height: auto;
   }
-  .image10{
-    width:34vw;
+
+  .image10 {
+    width: 34vw;
     height: auto;
     top: -13vw;
     right: -20px;
   }
+
   .menucinq,
   .menuquatre,
   .menuthree,
@@ -1575,27 +1897,31 @@ h1 {
     align-items: center;
     gap: 0.5vw,
   }
-  .prix{
-    margin-left:0px;
+
+  .prix {
+    margin-left: 0px;
   }
-  
+
   .trois,
   .un {
     padding-right: 0vw;
     padding-left: 0vw;
   }
+
   .dix,
   .huit,
-  .six{
-    margin-left:2vw
+  .six {
+    margin-left: 2vw
   }
+
   .quatre,
   .deux {
     margin-left: 1vw;
   }
 }
-@media(max-width:300px){
-  .menu-item  {
+
+@media(max-width:300px) {
+  .menu-item {
     display: flex;
     flex-direction: column;
   }
