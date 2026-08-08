@@ -1721,6 +1721,10 @@ h1 {
 ========================= */
 
   @media (max-width: 900px) {
+    .header-bar{
+      display: flex;
+      flex-direction:row;
+    }
 
     .main-nav-container {
       display: none;
