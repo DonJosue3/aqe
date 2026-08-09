@@ -12,8 +12,7 @@
             <RouterLink to="/shop">Shop</RouterLink>
             <RouterLink to="/">Contact</RouterLink>
           </nav>
-          <!-- Bouton hamburger -->
-          <button class="hamburger" @click="mobileOpen = true" aria-label="Menu">
+          <button v-if="!mobileOpen" class="hamburger" @click="mobileOpen = true" aria-label="Menu">
             <span></span>
             <span></span>
             <span></span>
