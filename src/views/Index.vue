@@ -2132,7 +2132,7 @@ html {
     display: block;
     width: 26px;
     height: 3px;
-    background: #a46746f4;
+    background: #f8f8f8;
     border-radius: 2px;
     transition: all 0.3s ease;
   }

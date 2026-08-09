@@ -1455,7 +1455,7 @@ h1 {
     flex-direction: column;
     width: 26px;
     height: 3px;
-    background: #0e0b0b;
+    background: #a46746f4;
     border-radius: 2px;
     transition: all 0.3s ease;
   }
