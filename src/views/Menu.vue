@@ -5,7 +5,6 @@
         <div class="logo">
           <img src="/images/aqelogo.png" alt="Logo">
         </div>
-        <!-- Navigation desktop -->
         <nav class="main-nav-container">
           <RouterLink to="/home">Home</RouterLink>
           <RouterLink to="/services">Services</RouterLink>
@@ -13,7 +12,7 @@
           <RouterLink to="/shop">Shop</RouterLink>
         </nav>
         <!-- Bouton hamburger -->
-        <button class="hamburger" @click="mobileOpen = true" aria-label="Menu">
+        <button v-if="!mobileOpen" class="hamburger" @click="mobileOpen = true" aria-label="Menu">
           <span></span>
           <span></span>
           <span></span>
@@ -49,9 +48,7 @@
                 <RouterLink to="/shop" class="drawer-link" @click="mobileOpen = false">
                   Shop
                 </RouterLink>
-
               </nav>
-
             </div>
           </div>
         </Transition>
@@ -1367,21 +1364,20 @@ h1 {
 .footer-contact-item i {
   color: #605f11;
   font-size: 20px;
-  min-width: 20px
+  min-width: 20px;
 }
 
 .footer-contact-item span {
-  transition: .3s
+  transition: .3s;
 }
 
 .footer-contact-item:hover span {
-  color: #d4a04a
+  color: #d4a04a;
 }
 
-
-
 .hamburger span {
-  display: block;
+  display: flex;
+  flex-direction:column;
   width: 24px;
   height: 2px;
   background: #000;
@@ -1400,6 +1396,204 @@ h1 {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+.main-nav-container {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex-shrink: 0;
+}
+
+.main-nav-container a {
+  text-decoration: none;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.main-nav-container a:hover {
+  color: #d4af37;
+}
+
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .logo img {
+    width: 15vw;
+    height: auto;
+  }
+
+  .header-bar {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main-nav-container {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+  }
+
+  .hamburger span {
+    display: flex;
+    flex-direction: column;
+    width: 26px;
+    height: 3px;
+    background: #0e0b0b;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 2000;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .mobile-drawer {
+    width: 60vw;
+    max-width: 85vw;
+    height: max-content;
+    background: #ffffff;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  .drawer-close {
+    align-self: flex-end;
+
+    width: 40px;
+    height: 40px;
+
+    background: transparent;
+
+    border: none;
+
+    font-size: 28px;
+
+    color: #333;
+
+    cursor: pointer;
+
+    line-height: 1;
+  }
+
+
+  /* =========================
+   DRAWER LOGO
+========================= */
+
+  .drawer-logo {
+    display: flex;
+
+    justify-content: center;
+
+    margin: 20px 0 35px;
+  }
+
+  .drawer-logo img {
+    width: 150px;
+
+    height: auto;
+
+    object-fit: contain;
+  }
+
+
+  /* =========================
+   DRAWER LINKS
+========================= */
+
+  .drawer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+  }
+
+  .drawer-link {
+    display: block;
+
+    width: 100%;
+
+    padding: 16px 5px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    border-bottom: 1px solid #eeeeee;
+
+    transition:
+      color 0.25s ease,
+      padding-left 0.25s ease;
+  }
+
+  .drawer-link:hover {
+    color: #b08d20;
+    padding-left: 12px;
+  }
+
+  .drawer-link.router-link-active {
+    color: #b08d20;
+    font-weight: 600;
+  }
+
+
+  /* =========================
+   DRAWER ANIMATION
+   Même principe que GCMBC
+========================= */
+
+  .drawer-enter-active,
+  .drawer-leave-active {
+    transition: opacity 0.25s ease;
+  }
+
+  .drawer-enter-from,
+  .drawer-leave-to {
+    opacity: 0;
+  }
+
+  .drawer-enter-active .mobile-drawer,
+  .drawer-leave-active .mobile-drawer {
+    transition: transform 0.3s ease;
+  }
+
+  .drawer-enter-from .mobile-drawer {
+    transform: translateX(100%);
+  }
+
+  .drawer-leave-to .mobile-drawer {
+    transform: translateX(100%);
+  }
+}
 @media (max-width:850px) {
   .hamburger {
     display: flex;

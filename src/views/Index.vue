@@ -6,12 +6,54 @@
       <div class="content-box">
         <div class="header-bar">
           <div class="logo"><img :src="imgUrl('aqelogo.png')" alt="Logo"></div>
-          <div class="main-nav-container">
+          <nav class="main-nav-container">
             <RouterLink to="/services">Services</RouterLink>
             <RouterLink to="/menu">Menu</RouterLink>
             <RouterLink to="/shop">Shop</RouterLink>
             <RouterLink to="/">Contact</RouterLink>
-          </div>
+          </nav>
+          <!-- Bouton hamburger -->
+          <button class="hamburger" @click="mobileOpen = true" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <!-- Menu mobile -->
+          <Transition name="drawer">
+            <div v-if="mobileOpen" class="mobile-overlay" @click.self="mobileOpen = false">
+              <div class="mobile-drawer">
+
+                <button class="drawer-close" @click="mobileOpen = false" aria-label="Fermer">
+                  ✕
+                </button>
+
+                <div class="drawer-logo">
+                  <img src="/images/aqelogo.png" alt="African Queen Empire">
+                </div>
+
+                <nav class="drawer-links">
+
+                  <RouterLink to="/home" class="drawer-link" @click="mobileOpen = false">
+                    Home
+                  </RouterLink>
+
+                  <RouterLink to="/services" class="drawer-link" @click="mobileOpen = false">
+                    Services
+                  </RouterLink>
+
+                  <RouterLink to="/menu" class="drawer-link" @click="mobileOpen = false">
+                    Menu
+                  </RouterLink>
+
+                  <RouterLink to="/shop" class="drawer-link" @click="mobileOpen = false">
+                    Shop
+                  </RouterLink>
+
+                </nav>
+
+              </div>
+            </div>
+          </Transition>
         </div>
         <div class="inner-slider" id="innerSlider"></div>
         <div class="content right animate-right" id="animatedContent">
@@ -475,7 +517,7 @@ html {
   background: #000;
   color: #fff;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 .front-page,
@@ -518,10 +560,9 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top, 
-    rgba(0, 0, 0, .85), 
-    rgba(0, 0, 0, .2));
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, .85),
+      rgba(0, 0, 0, .2));
   z-index: 2;
   pointer-events: none
 }
@@ -1660,7 +1701,39 @@ html {
   color: #d4a04a
 }
 
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  transition: all .3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 @media(max-width:900px) {
+  .header-bar {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main-nav-container {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 
   .header-bar {
     padding: 0 40px
@@ -1716,6 +1789,207 @@ html {
   .footer-top {
     grid-template-columns: 1fr 1fr;
     gap: 30px
+  }
+}
+
+@media(max-width:850px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .main-nav-container {
+    position: absolute;
+    top: 90px;
+    right: 20px;
+    width: 30vw;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    background: #a46746f4;
+    border-radius: 18px;
+    padding: 20px;
+    gap: 18px;
+    transform: scale(.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: .35s;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
+
+  }
+
+  /* =========================
+   NAVIGATION DESKTOP
+========================= */
+
+  .main-nav-container {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .main-nav-container a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.25s ease;
+  }
+
+  .main-nav-container a:hover {
+    color: #d4af37;
+  }
+
+
+  /* =========================
+   HAMBURGER
+========================= */
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 8px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 1000;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: #a46746f4;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* =========================
+   MOBILE OVERLAY
+========================= */
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 2000;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* =========================
+   MOBILE DRAWER
+========================= */
+  .mobile-drawer {
+    width: 60vw;
+    max-width: 85vw;
+    height: max-content;
+    background: #ffffff;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  /* =========================
+   CLOSE BUTTON
+========================= */
+  .drawer-close {
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* =========================
+   DRAWER LOGO
+========================= */
+  .drawer-logo {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 35px;
+  }
+
+  .drawer-logo img {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* =========================
+   DRAWER LINKS
+========================= */
+  .drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .drawer-link {
+    display: block;
+    width: 100%;
+    padding: 16px 5px;
+    text-decoration: none;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    border-bottom: 1px solid #eeeeee;
+    transition:
+      color 0.25s ease,
+      padding-left 0.25s ease;
+  }
+
+  .drawer-link:hover {
+    color: #b08d20;
+    padding-left: 12px;
+  }
+
+  .drawer-link.router-link-active {
+    color: #b08d20;
+    font-weight: 600;
+  }
+
+  /* =========================
+   DRAWER ANIMATION
+   Même principe que GCMBC
+========================= */
+  .drawer-enter-active,
+  .drawer-leave-active {
+    transition: opacity 0.25s ease;
+  }
+
+  .drawer-enter-from,
+  .drawer-leave-to {
+    opacity: 0;
+  }
+
+  .drawer-enter-active .mobile-drawer,
+  .drawer-leave-active .mobile-drawer {
+    transition: transform 0.3s ease;
+  }
+
+  .drawer-enter-from .mobile-drawer {
+    transform: translateX(100%);
+  }
+
+  .drawer-leave-to .mobile-drawer {
+    transform: translateX(100%);
   }
 }
 
