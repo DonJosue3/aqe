@@ -1904,7 +1904,7 @@ html {
     flex-direction: column;
     width: 26px;
     height: 3px;
-    background: #0e0b0b;
+    background: #f8f8f8;
     border-radius: 2px;
     transition: all 0.3s ease;
   }
