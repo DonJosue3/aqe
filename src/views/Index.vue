@@ -47,9 +47,7 @@
                   <RouterLink to="/shop" class="drawer-link" @click="mobileOpen = false">
                     Shop
                   </RouterLink>
-
                 </nav>
-
               </div>
             </div>
           </Transition>
@@ -132,7 +130,6 @@
         </div>
       </div>
     </section>
-
     <section class="services-page">
       <div class="content-box services-unrolled-card" id="svcCard">
         <div class="svc-bg-layer visible" id="svcBgA"></div>
@@ -258,7 +255,6 @@
         </div>
       </div>
     </section>
-
     <section class="shop-section">
       <div class="content-box shop-card">
         <div class="shop-header"><span class="eyebrow">Collection Exclusive</span>
@@ -351,7 +347,6 @@
         </div>
       </div>
     </section>
-
     <section class="map-section">
       <div class="map-card">
         <div class="map-header">
@@ -364,7 +359,6 @@
         </iframe>
       </div>
     </section>
-
     <footer class="site-footer">
       <div class="footer-top">
         <div class="footer-brand">
@@ -433,12 +427,11 @@
     </footer>
   </div>
 </template>
-
 <script setup>
 import { onMounted } from "vue";
+import { ref } from 'vue'
 
-// Construit une URL d'image qui respecte le "base" défini dans vite.config.js
-// (ex: "/aqe/") aussi bien en dev qu'une fois déployé sur GitHub Pages.
+const mobileOpen = ref(false)
 const imgUrl = (name) => `${import.meta.env.BASE_URL}images/${name}`;
 
 onMounted(() => {
@@ -519,6 +512,45 @@ html {
   overflow-x: hidden;
 }
 
+.main-nav-container a {
+  color: #000;
+  text-decoration: none;
+  margin-left: 35px;
+  font-size: .85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: .75;
+  transition: opacity .25s, color .25s
+}
+
+.main-nav-container a.active,
+.main-nav-container a:hover {
+  color: #ffea00;
+  opacity: 1
+}
+
+.main-nav-container {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex-shrink: 0;
+}
+
+.main-nav-container a {
+  text-decoration: none;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.main-nav-container a:hover {
+  color: #d4af37;
+}
+
 .front-page,
 .about-section,
 .services-page,
@@ -527,6 +559,31 @@ html {
   display: flex;
   justify-content: center;
   padding: 4vh 0
+}
+
+.hamburger span {
+  display: flex;
+  flex-direction: column;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  transition: all .3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.hamburger {
+  display: none;
 }
 
 .front-page {
@@ -618,15 +675,6 @@ html {
   z-index: 1
 }
 
-.header-bar {
-  position: absolute;
-  top: 0;
-  inset: 0 60px auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10
-}
 
 .logo img {
   width: 180px;
@@ -635,24 +683,6 @@ html {
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .4))
 }
 
-.main-nav-container a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 35px;
-  font-size: .85rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  opacity: .75;
-  transition: opacity .25s, color .25s;
-  display: inline-block
-}
-
-.main-nav-container a:hover,
-.svc-link:hover {
-  color: #ffea00;
-  opacity: 1
-}
 
 .content {
   position: absolute;
@@ -1700,42 +1730,209 @@ html {
   color: #d4a04a
 }
 
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #000;
-  transition: all .3s;
+
+.header-bar {
+  position: absolute;
+  top: 0;
+  inset: 0 60px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  padding: 10px 0
 }
 
-.hamburger.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-@media(max-width:900px) {
+@media(max-width:1100px) {
   .header-bar {
     display: flex;
     flex-direction: row;
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 2000;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mobile-drawer {
+    width: 60vw;
+    max-width: 85vw;
+    height: max-content;
+    background: #ffffff;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .drawer-close {
+    align-self: flex-end;
+
+    width: 40px;
+    height: 40px;
+
+    background: transparent;
+
+    border: none;
+
+    font-size: 28px;
+
+    color: #333;
+
+    cursor: pointer;
+
+    line-height: 1;
+  }
+
+
+  /* =========================
+   DRAWER LOGO
+========================= */
+
+  .drawer-logo {
+    display: flex;
+
+    justify-content: center;
+
+    margin: 20px 0 35px;
+  }
+
+  .drawer-logo img {
+    width: 150px;
+
+    height: auto;
+
+    object-fit: contain;
+  }
+
+
+  /* =========================
+   DRAWER LINKS
+========================= */
+
+  .drawer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+  }
+
+  .drawer-link {
+    display: block;
+
+    width: 100%;
+
+    padding: 16px 5px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    border-bottom: 1px solid #eeeeee;
+
+    transition:
+      color 0.25s ease,
+      padding-left 0.25s ease;
+  }
+
+  .drawer-link:hover {
+    color: #b08d20;
+    padding-left: 12px;
+  }
+
+  .drawer-link.router-link-active {
+    color: #b08d20;
+    font-weight: 600;
+  }
+
+
+  /* =========================
+   DRAWER ANIMATION
+   Même principe que GCMBC
+========================= */
+
+  .drawer-enter-active,
+  .drawer-leave-active {
+    transition: opacity 0.25s ease;
+  }
+
+  .drawer-enter-from,
+  .drawer-leave-to {
+    opacity: 0;
+  }
+
+  .drawer-enter-active .mobile-drawer,
+  .drawer-leave-active .mobile-drawer {
+    transition: transform 0.3s ease;
+  }
+
+  .drawer-enter-from .mobile-drawer {
+    transform: translateX(100%);
+  }
+
+  .drawer-leave-to .mobile-drawer {
+    transform: translateX(100%);
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+  }
+
+  .hamburger span {
+    display: flex;
+    flex-direction: column;
+    width: 26px;
+    height: 3px;
+    background: #0e0b0b;
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
   .main-nav-container {
     display: none;
   }
 
-  .hamburger {
-    display: flex;
+}
+
+@media(max-width:900px) {
+  .hamburger{
+    display:flex;
+  }
+  .main-nav-container {
+    display: none;
+  }
+
+  .main-nav-container a {
+    margin: 0;
+    width: 100%;
+    height: 6vw;
+    text-align: left;
   }
 
   .header-bar {
-    padding: 0 40px
+    display: flex;
+    flex-direction: row;
   }
 
   .content h1 {
@@ -1789,6 +1986,9 @@ html {
     grid-template-columns: 1fr 1fr;
     gap: 30px
   }
+  .hamburger {
+    display: flex;
+  }
 }
 
 @media(max-width:850px) {
@@ -1796,86 +1996,6 @@ html {
     display: flex;
   }
 
-  .main-nav-container {
-    position: absolute;
-    top: 90px;
-    right: 20px;
-    width: 30vw;
-    height: max-content;
-    display: flex;
-    flex-direction: column;
-    background: #a46746f4;
-    border-radius: 18px;
-    padding: 20px;
-    gap: 18px;
-    transform: scale(.9);
-    opacity: 0;
-    visibility: hidden;
-    transition: .35s;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
-
-  }
-
-  /* =========================
-   NAVIGATION DESKTOP
-========================= */
-
-  .main-nav-container {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-  }
-
-  .main-nav-container a {
-    text-decoration: none;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    transition: color 0.25s ease;
-  }
-
-  .main-nav-container a:hover {
-    color: #d4af37;
-  }
-
-
-  /* =========================
-   HAMBURGER
-========================= */
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-
-    width: 42px;
-    height: 42px;
-
-    padding: 8px;
-
-    background: transparent;
-    border: none;
-
-    cursor: pointer;
-
-    position: relative;
-    z-index: 1000;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 26px;
-    height: 3px;
-    background: #a46746f4;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  /* =========================
-   MOBILE OVERLAY
-========================= */
   .mobile-overlay {
     position: fixed;
     inset: 0;
@@ -1900,9 +2020,6 @@ html {
     overflow-y: auto;
   }
 
-  /* =========================
-   CLOSE BUTTON
-========================= */
   .drawer-close {
     align-self: flex-end;
     width: 40px;
@@ -1990,20 +2107,81 @@ html {
   .drawer-leave-to .mobile-drawer {
     transform: translateX(100%);
   }
-}
 
-@media(max-width:768px) {
-  .header-bar {
-    top: 25px;
+  .hamburger {
+    display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 0 20px
+    justify-content: center;
+    gap: 5px;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 8px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 1000;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: #a46746f4;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .main-nav-container {
+    position: absolute;
+    top: 90px;
+    right: 20px;
+    width: 30vw;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    background: #a46746f4;
+    border-radius: 18px;
+    padding: 20px;
+    gap: 18px;
+    transform: scale(.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: .35s;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
+
+  }
+
+  /* =========================
+   NAVIGATION DESKTOP
+========================= */
+
+  .main-nav-container {
+    display: flex;
+    align-items: center;
+    gap: 35px;
   }
 
   .main-nav-container a {
-    margin: 0 8px;
-    font-size: .8rem
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.25s ease;
   }
+
+  .main-nav-container a:hover {
+    color: #d4af37;
+  }
+}
+
+@media(max-width:768px) {
 
   .content {
     width: calc(100% - 40px)
@@ -2127,13 +2305,5 @@ html {
 
 .footer-contact-item:hover span {
   color: #d4a04a;
-}
-
-@media(max-width:500px) {
-  .logo img {
-    width: 18vw;
-    height: auto;
-  }
-
 }
 </style>

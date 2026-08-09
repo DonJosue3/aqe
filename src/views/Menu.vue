@@ -1849,6 +1849,8 @@ h1 {
   .drawer-leave-to .mobile-drawer {
     transform: translateX(100%);
   }
+}
+
   /* =========================
    RESPONSIVE
 ========================= */
@@ -1948,7 +1950,7 @@ h1 {
     box-sizing: border-box;
   }
 
-}
+
 
 @media(max-width:500px) {
 
