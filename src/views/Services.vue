@@ -1,8 +1,7 @@
 <template>
   <div class="head">
     <div class="header-bar">
-      <div class="logo"><img src="/images/logo.png" alt="Logo">
-      </div>
+      <div class="logo"><img src="/images/logo.png" alt="Logo"></div>
       <nav class="main-nav-container">
         <RouterLink to="/home">Home</RouterLink>
         <RouterLink to="/menu">Menu</RouterLink>
@@ -18,7 +17,6 @@
       <Transition name="drawer">
         <div v-if="mobileOpen" class="mobile-overlay" @click.self="mobileOpen = false">
           <div class="mobile-drawer">
-
             <button class="drawer-close" @click="mobileOpen = false" aria-label="Fermer">
                 ✕
               </button>
