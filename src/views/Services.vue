@@ -1,431 +1,137 @@
 <template>
-    <div class="head">
-      <div class="header-bar">
-        <div class="logo"><img src="/images/logo.png" alt="Logo">
-        </div>
-        <nav class="main-nav-container">
-          <RouterLink to="/home">Home</RouterLink>
-          <RouterLink to="/menu">Menu</RouterLink>
-          <RouterLink to="/shop">Shop</RouterLink>
-          <RouterLink to="/services" class="active">Services</RouterLink>
-        </nav>
-        <button class="hamburger" @click="mobileOpen = true" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+  <div class="head">
+    <div class="header-bar">
+      <div class="logo"><img src="/images/logo.png" alt="Logo">
+      </div>
+      <nav class="main-nav-container">
+        <RouterLink to="/home">Home</RouterLink>
+        <RouterLink to="/menu">Menu</RouterLink>
+        <RouterLink to="/shop">Shop</RouterLink>
+        <RouterLink to="/services" class="active">Services</RouterLink>
+      </nav>
+      <button v-if="!mobileOpen" class="hamburger" @click="mobileOpen = true" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <Transition name="drawer">
-          <div v-if="mobileOpen" class="mobile-overlay" @click.self="mobileOpen = false">
-            <div class="mobile-drawer">
+      <Transition name="drawer">
+        <div v-if="mobileOpen" class="mobile-overlay" @click.self="mobileOpen = false">
+          <div class="mobile-drawer">
 
-              <button class="drawer-close" @click="mobileOpen = false" aria-label="Fermer">
+            <button class="drawer-close" @click="mobileOpen = false" aria-label="Fermer">
                 ✕
               </button>
-
-              <div class="drawer-logo">
-                <img src="/images/aqelogo.png" alt="African Queen Empire">
-              </div>
-
-              <nav class="drawer-links">
-
-                <RouterLink to="/home" class="drawer-link" @click="mobileOpen = false">
-                  Home
-                </RouterLink>
-
-                <RouterLink to="/services" class="drawer-link" @click="mobileOpen = false">
-                  Services
-                </RouterLink>
-
-                <RouterLink to="/menu" class="drawer-link" @click="mobileOpen = false">
-                  Menu
-                </RouterLink>
-
-                <RouterLink to="/shop" class="drawer-link" @click="mobileOpen = false">
-                  Shop
-                </RouterLink>
-
-              </nav>
-
+            <div class="drawer-logo">
+              <img src="/images/aqelogo.png" alt="African Queen Empire">
             </div>
-          </div>
-        </Transition>
-      </div>
 
-      <section class="m-hero">
-        <h1>Ours Services</h1>
-      </section>
+            <nav class="drawer-links">
+              <RouterLink to="/home" class="drawer-link" @click="mobileOpen = false">
+                Home
+              </RouterLink>
+              <RouterLink to="/services" class="drawer-link" @click="mobileOpen = false">
+                Services
+              </RouterLink>
+              <RouterLink to="/menu" class="drawer-link" @click="mobileOpen = false">
+                Menu
+              </RouterLink>
+              <RouterLink to="/shop" class="drawer-link" @click="mobileOpen = false">
+                Shop
+              </RouterLink>
+            </nav>
+          </div>
+        </div>
+      </Transition>
     </div>
 
-    <div class="services-list" id="srvList">
-      <div class="srv-line"></div>
-      <!-- PEEK 1 -->
-      <div class="srv-item" data-index="0">
-        <div class="srv-trigger">
-          <div class="srv-dot"></div>
-          <div class="srv-thumb">
-            <img src="/images/interior-design.png" alt="">
-          </div>
-          <div class="srv-meta">
-            <h2 class="srv-name">I.Interior Decoration</h2>
-            <p class="srv-short">Espaces decores avec un style africain</p>
-          </div>
-          <span class="srv-arrow">›</span>
+    <section class="m-hero">
+      <h1>Ours Services</h1>
+    </section>
+  </div>
+
+  <div class="services-list" id="srvList">
+    <div class="srv-line"></div>
+    <!-- PEEK 1 -->
+    <div class="srv-item" data-index="0">
+      <div class="srv-trigger">
+        <div class="srv-dot"></div>
+        <div class="srv-thumb">
+          <img src="/images/interior-design.png" alt="">
         </div>
-        <div class="srv-panel">
-          <div class="panel-inner">
-            <p class="panel-desc">Chaque pièce devient un voyage. Nous concevons des intérieurs qui marient les motifs
-              africains, les matières naturelles et la lumière pour créer des atmosphères uniques où le
-              luxe.</p>
-            <div class="gallery">
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a2a18,#0f5a30);">
-                  <div class="gal-img-inner">
-                    <img src="/images/ID3.jpg" alt="">
-                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                      <rect x="8" y="16" width="40" height="30" rx="2" stroke="#d4a04a" stroke-width="1.5"
-                        fill="rgba(212,160,74,0.15)" />
-                      <path d="M16 16V12C16 9.8 17.8 8 20 8H36C38.2 8 40 9.8 40 12V16" stroke="#d4a04a"
-                        stroke-width="1.5" fill="none" />
-                    </svg>
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Salon</span>
-                    <p class="gal-caption">..avec des tableaux..</p>
-                  </div>
+        <div class="srv-meta">
+          <h2 class="srv-name">I.Interior Decoration</h2>
+          <p class="srv-short">Espaces decores avec un style africain</p>
+        </div>
+        <span class="srv-arrow">›</span>
+      </div>
+      <div class="srv-panel">
+        <div class="panel-inner">
+          <p class="panel-desc">Chaque pièce devient un voyage. Nous concevons des intérieurs qui marient les motifs
+            africains, les matières naturelles et la lumière pour créer des atmosphères uniques où le
+            luxe.</p>
+          <div class="gallery">
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a2a18,#0f5a30);">
+                <div class="gal-img-inner">
+                  <img src="/images/ID3.jpg" alt="">
+                  <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                    <rect x="8" y="16" width="40" height="30" rx="2" stroke="#d4a04a" stroke-width="1.5"
+                      fill="rgba(212,160,74,0.15)" />
+                    <path d="M16 16V12C16 9.8 17.8 8 20 8H36C38.2 8 40 9.8 40 12V16" stroke="#d4a04a" stroke-width="1.5"
+                      fill="none" />
+                  </svg>
                 </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#1a0a2a,#3d1a5a);">
-                  <div class="gal-img-inner">
-                    <img src="/images/ID6.jpg" alt="">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <path d="M4 28V12L16 4L28 12V28H4Z" stroke="#d4a04a" stroke-width="1.2"
-                        fill="rgba(212,160,74,0.1)" />
-                    </svg>
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label"></span>
-                    <p class="gal-caption">...lumineux dans les espaces</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#200800,#4d1800);">
-                  <div class="gal-img-inner">
-                    <img src="/images/ID4.jpg" alt="">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <circle cx="16" cy="16" r="8" stroke="#d4a04a" stroke-width="1.2" fill="none" />
-                      <path d="M8 16H24M16 8V24" stroke="#d4a04a" stroke-width="1.2" />
-                    </svg>
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Luminaire</span>
-                    <p class="gal-caption">Suspensions en rotin tressé à la main</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a1820,#1a3a50);">
-                  <div class="gal-img-inner">
-                    <img src="/images/ID13.jpg" alt="">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <rect x="4" y="4" width="10" height="24" rx="1" stroke="#d4a04a" stroke-width="1.2"
-                        fill="rgba(212,160,74,0.1)" />
-                      <rect x="18" y="4" width="10" height="14" rx="1" stroke="#d4a04a" stroke-width="1.2"
-                        fill="rgba(212,160,74,0.1)" />
-                    </svg>
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label"></span>
-                    <p class="gal-caption">..avec des motifs traditionnels..</p>
-                  </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Salon</span>
+                  <p class="gal-caption">..avec des tableaux..</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SERVICE 2 -->
-      <div class="srv-item" data-index="1">
-        <div class="srv-trigger">
-          <div class="srv-dot"></div>
-          <div class="srv-thumb">
-            <img src="/images/hand-made.png" alt="">
-          </div>
-          <div class="srv-meta">
-            <h2 class="srv-name">II.Handmade Creativity</h2>
-            <p class="srv-short">Pièces uniques nées du savoir-faire ancestral</p>
-          </div>
-          <span class="srv-arrow">›</span>
-        </div>
-        <div class="srv-panel">
-          <div class="panel-inner">
-            <p class="panel-desc">De l'argile, du fil, du cuir et des perles — chaque objet raconte une histoire
-              transmise de génération en génération. Nos artisans façonnent des créations qui portent l'âme du continent
-              tout en dialoguant avec l'esthétique contemporaine.</p>
-            <div class="gallery">
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#3d1a00,#7a3c00);">
-                  <div class="gal-img-inner">
-                    <img src="/images/HC3.jpg" alt="">
-                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                      <path d="M8 48L18 8L28 30L38 18L48 48H8Z" stroke="#d4a04a" stroke-width="1.5"
-                        fill="rgba(212,160,74,0.2)" />
-                      <circle cx="28" cy="30" r="4" fill="#d4a04a" />
-                    </svg>
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Sculpture</span>
-                    <p class="gal-caption">...des styles ancestral sur les objets modernes.</p>
-                  </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#1a0a2a,#3d1a5a);">
+                <div class="gal-img-inner">
+                  <img src="/images/ID6.jpg" alt="">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M4 28V12L16 4L28 12V28H4Z" stroke="#d4a04a" stroke-width="1.2"
+                      fill="rgba(212,160,74,0.1)" />
+                  </svg>
                 </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#2a0a0a,#6b2020);">
-                  <div class="gal-img-inner">
-                    <img src="/images/HC2.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Textile</span>
-                    <p class="gal-caption">..des bijoux..</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a2a1a,#1a5a30);">
-                  <div class="gal-img-inner">
-                    <img src="/images/HC9.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Bijoux</span>
-                    <p class="gal-caption">..des tableaux decoratives..</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#1a1a0a,#3d3d00);">
-                  <div class="gal-img-inner">
-                    <img src="/images/HC10.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Poterie</span>
-                    <p class="gal-caption">Céramiques aux symboles adinkra</p>
-                  </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label"></span>
+                  <p class="gal-caption">...lumineux dans les espaces</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- SERVICE 3 -->
-      <div class="srv-item" data-index="2">
-        <div class="srv-trigger">
-          <div class="srv-dot"></div>
-          <div class="srv-thumb">
-            <img src="/images/latte-art.png" alt="">
-          </div>
-          <div class="srv-meta">
-            <h2 class="srv-name">III.Coffee Lifestyle</h2>
-            <p class="srv-short">Le café africain érigé en rituel de vie</p>
-          </div>
-          <span class="srv-arrow">›</span>
-        </div>
-        <div class="srv-panel">
-          <div class="panel-inner">
-            <p class="panel-desc">
-              Coffee Lifestyle celebrates the art of gathering. Enjoy premium African
-              coffee, fresh meals, homemade pastries, and carefully selected refreshments
-              served in an atmosphere inspired by African warmth, creativity, and
-              hospitality.
-            </p>
-            <div class="gallery">
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#2d1200,#5c2600);">
-                  <div class="gal-img-inner">
-                    <img
-                      src="https://images.pexels.com/photos/162886/coffee-glass-beverage-coffee-mug-162886.jpeg?auto=compress&cs=tinysrgb&w=900"
-                      alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Coffee</span>
-                    <p class="gal-caption"></p>
-                  </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#200800,#4d1800);">
+                <div class="gal-img-inner">
+                  <img src="/images/ID4.jpg" alt="">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="8" stroke="#d4a04a" stroke-width="1.2" fill="none" />
+                    <path d="M8 16H24M16 8V24" stroke="#d4a04a" stroke-width="1.2" />
+                  </svg>
                 </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#1a0a00,#3d2200);">
-                  <div class="gal-img-inner">
-                    <img src="/images/CL4.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label"></span>
-                    <p class="gal-caption">..salades de fruits..</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a180a,#1a3a1a);">
-                  <div class="gal-img-inner">
-                    <img src="/images/CL2.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label"></span>
-                    <p class="gal-caption">...pizza..</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#200a20,#4d1a4d);">
-                  <div class="gal-img-inner">
-                    <img src="/images/CL1.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label"></span>
-                    <p class="gal-caption">..plats complets</p>
-                  </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Luminaire</span>
+                  <p class="gal-caption">Suspensions en rotin tressé à la main</p>
                 </div>
               </div>
             </div>
-            <RouterLink to="/menu">
-              <div class="panel-cta">Voir le menu →</div>
-            </RouterLink>
-          </div>
-        </div>
-      </div>
-
-      <!-- SERVICE 4 -->
-      <div class="srv-item" data-index="3">
-        <div class="srv-trigger">
-          <div class="srv-dot"></div>
-          <div class="srv-thumb">
-            <img src="/images/shirt.png" alt="">
-          </div>
-          <div class="srv-meta">
-            <h2 class="srv-name">IV.Fashion Products</h2>
-            <p class="srv-short">Mode africaine contemporaine comme manifeste</p>
-          </div>
-          <span class="srv-arrow">›</span>
-        </div>
-        <div class="srv-panel">
-          <div class="panel-inner">
-            <p class="panel-desc">Des pagnes aux coupes architecturales, nos collections fusionnent le savoir-faire des
-              tisserands africains avec une vision de mode globale. Chaque pièce est une déclaration — porter African
-              Queen Empire, c'est affirmer son héritage.</p>
-            <div class="gallery">
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#2a0a2a,#6b1a6b);">
-                  <div class="gal-img-inner">
-                    <img src="/images/FP1.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Couture</span>
-                    <p class="gal-caption">Robes à imprimés bogolan contemporains</p>
-                  </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a1820,#1a3a50);">
+                <div class="gal-img-inner">
+                  <img src="/images/ID13.jpg" alt="">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect x="4" y="4" width="10" height="24" rx="1" stroke="#d4a04a" stroke-width="1.2"
+                      fill="rgba(212,160,74,0.1)" />
+                    <rect x="18" y="4" width="10" height="14" rx="1" stroke="#d4a04a" stroke-width="1.2"
+                      fill="rgba(212,160,74,0.1)" />
+                  </svg>
                 </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#1a0800,#4d2400);">
-                  <div class="gal-img-inner">
-                    <img src="/images/FP2.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Accessoires</span>
-                    <p class="gal-caption">Sacs en raphia tressé et cuir naturel</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a1a0a,#1a4a20);">
-                  <div class="gal-img-inner">
-                    <img src="/images/FP3.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Prêt-à-porter</span>
-                    <p class="gal-caption">Collections capsule saison 2025</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a0a20,#1a1a5a);">
-                  <div class="gal-img-inner">
-                    <img src="/images/FP4.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Sur mesure</span>
-                    <p class="gal-caption">Tenues de cérémonie personnalisées</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SERVICE 5 -->
-      <div class="srv-item" data-index="4">
-        <div class="srv-trigger">
-          <div class="srv-dot"></div>
-          <div class="srv-thumb">
-            <img src="/images/woman.png" alt="">
-          </div>
-          <div class="srv-meta">
-            <h2 class="srv-name">V.Natural Hair Elegance</h2>
-            <p class="srv-short">La texture naturelle célébrée en couronne</p>
-          </div>
-          <span class="srv-arrow">›</span>
-        </div>
-        <div class="srv-panel">
-          <div class="panel-inner">
-            <p class="panel-desc">Tresses, locks, twists, afros — chaque texture est une couronne à porter avec fierté.
-              Nos spécialistes en capillologie naturelle africaine proposent soins, styling et formations pour célébrer
-              et préserver la beauté authentique des cheveux naturels.</p>
-            <div class="gallery">
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a1a2a,#1a4060);">
-                  <div class="gal-img-inner">
-                    <img src="/images/NH1.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Styling</span>
-                    <p class="gal-caption">Box braids ornées de fils dorés</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#1a0a00,#3d2200);">
-                  <div class="gal-img-inner">
-                    <img src="/images/NH2.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Soins</span>
-                    <p class="gal-caption">Masques à l'huile de karité pur</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#0a200a,#1a5020);">
-                  <div class="gal-img-inner">
-                    <img src="/images/NH3.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Formation</span>
-                    <p class="gal-caption">Ateliers tressage et capillologie naturelle</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gal-card">
-                <div class="gal-img" style="background:linear-gradient(135deg,#200a20,#501050);">
-                  <div class="gal-img-inner">
-                    <img src="/images/NH4.jpg" alt="">
-                  </div>
-                  <div class="gal-overlay"></div>
-                  <div class="gal-info"><span class="gal-label">Produits</span>
-                    <p class="gal-caption">Gamme naturelle aux plantes africaines</p>
-                  </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label"></span>
+                  <p class="gal-caption">..avec des motifs traditionnels..</p>
                 </div>
               </div>
             </div>
@@ -433,63 +139,350 @@
         </div>
       </div>
     </div>
-    <footer class="site-footer">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-brand-logo">African Queen Empire</div>
-          <p>Une marque de lifestyle africaine qui célèbre la beauté, la créativité et l'hospitalité.</p>
-          <div class="footer-socials">
-            <a href="https://www.facebook.com/profile.php?id=61586875303123" class="footer-social" target="_blank"
-              rel="noopener noreferrer" aria-label="Facebook">
-              <i class="ti ti-brand-facebook"></i>
-            </a>
-            <a href="https://www.instagram.com/africanqueenempire1/" class="footer-social" target="_blank"
-              rel="noopener noreferrer" aria-label="Instagram">
-              <i class="ti ti-brand-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@africanqueenempire?_r=1&_t=ZM-91zcYTQsv5X&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnIXvDgFunqvECkfp84ajEpfC24c6m3VC8wp2kkil23cmI1JZsRfo4XuovMJY_aem_m_NbdTqgu6Eh9gLqoYqH4g"
-              class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-              <i class="ti ti-brand-tiktok"></i>
-            </a>
-            <a href="https://www.threads.com/@africanqueenempire1?xmt=AQG0RdDXgb2WW82eY8gIYhg-riUjku5CD4bEd4MSJA8b_KA"
-              class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Threads">
-              <i class="ti ti-brand-threads"></i>
-            </a>
-          </div>
+
+    <!-- SERVICE 2 -->
+    <div class="srv-item" data-index="1">
+      <div class="srv-trigger">
+        <div class="srv-dot"></div>
+        <div class="srv-thumb">
+          <img src="/images/hand-made.png" alt="">
         </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <RouterLink to="/home">Accueil</RouterLink>
-          <RouterLink to="/services">Services</RouterLink>
-          <RouterLink to="/shop">Shop</RouterLink>
-          <RouterLink to="/menu">Menu</RouterLink>
+        <div class="srv-meta">
+          <h2 class="srv-name">II.Handmade Creativity</h2>
+          <p class="srv-short">Pièces uniques nées du savoir-faire ancestral</p>
         </div>
-        <div class="footer-col">
-          <h4>Contacts</h4>
-          <div class="footer-contact-item">
-            <i class="ti ti-map-pin"></i>
-            <span>Bujumbura, Burundi</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="ti ti-phone"></i>
-            <span>
-              <br>+257 61 205 463
-              <br>+257 68 634 836
-              <br>+257 61 258 758
-            </span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="ti ti-mail"></i>
-            <span>africanqueenempirebuja@gmail.com</span>
+        <span class="srv-arrow">›</span>
+      </div>
+      <div class="srv-panel">
+        <div class="panel-inner">
+          <p class="panel-desc">De l'argile, du fil, du cuir et des perles — chaque objet raconte une histoire
+            transmise de génération en génération. Nos artisans façonnent des créations qui portent l'âme du continent
+            tout en dialoguant avec l'esthétique contemporaine.</p>
+          <div class="gallery">
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#3d1a00,#7a3c00);">
+                <div class="gal-img-inner">
+                  <img src="/images/HC3.jpg" alt="">
+                  <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                    <path d="M8 48L18 8L28 30L38 18L48 48H8Z" stroke="#d4a04a" stroke-width="1.5"
+                      fill="rgba(212,160,74,0.2)" />
+                    <circle cx="28" cy="30" r="4" fill="#d4a04a" />
+                  </svg>
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Sculpture</span>
+                  <p class="gal-caption">...des styles ancestral sur les objets modernes.</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#2a0a0a,#6b2020);">
+                <div class="gal-img-inner">
+                  <img src="/images/HC2.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Textile</span>
+                  <p class="gal-caption">..des bijoux..</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a2a1a,#1a5a30);">
+                <div class="gal-img-inner">
+                  <img src="/images/HC9.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Bijoux</span>
+                  <p class="gal-caption">..des tableaux decoratives..</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#1a1a0a,#3d3d00);">
+                <div class="gal-img-inner">
+                  <img src="/images/HC10.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Poterie</span>
+                  <p class="gal-caption">Céramiques aux symboles adinkra</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="footer-bottom"><span>© 2025 AFRICAN QUEEN EMPIRE · TOUS DROITS RÉSERVÉS</span>
+    </div>
+
+
+    <!-- SERVICE 3 -->
+    <div class="srv-item" data-index="2">
+      <div class="srv-trigger">
+        <div class="srv-dot"></div>
+        <div class="srv-thumb">
+          <img src="/images/latte-art.png" alt="">
+        </div>
+        <div class="srv-meta">
+          <h2 class="srv-name">III.Coffee Lifestyle</h2>
+          <p class="srv-short">Le café africain érigé en rituel de vie</p>
+        </div>
+        <span class="srv-arrow">›</span>
       </div>
-    </footer>
+      <div class="srv-panel">
+        <div class="panel-inner">
+          <p class="panel-desc">
+            Coffee Lifestyle celebrates the art of gathering. Enjoy premium African
+            coffee, fresh meals, homemade pastries, and carefully selected refreshments
+            served in an atmosphere inspired by African warmth, creativity, and
+            hospitality.
+          </p>
+          <div class="gallery">
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#2d1200,#5c2600);">
+                <div class="gal-img-inner">
+                  <img
+                    src="https://images.pexels.com/photos/162886/coffee-glass-beverage-coffee-mug-162886.jpeg?auto=compress&cs=tinysrgb&w=900"
+                    alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Coffee</span>
+                  <p class="gal-caption"></p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#1a0a00,#3d2200);">
+                <div class="gal-img-inner">
+                  <img src="/images/CL4.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label"></span>
+                  <p class="gal-caption">..salades de fruits..</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a180a,#1a3a1a);">
+                <div class="gal-img-inner">
+                  <img src="/images/CL2.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label"></span>
+                  <p class="gal-caption">...pizza..</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#200a20,#4d1a4d);">
+                <div class="gal-img-inner">
+                  <img src="/images/CL1.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label"></span>
+                  <p class="gal-caption">..plats complets</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <RouterLink to="/menu">
+            <div class="panel-cta">Voir le menu →</div>
+          </RouterLink>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE 4 -->
+    <div class="srv-item" data-index="3">
+      <div class="srv-trigger">
+        <div class="srv-dot"></div>
+        <div class="srv-thumb">
+          <img src="/images/shirt.png" alt="">
+        </div>
+        <div class="srv-meta">
+          <h2 class="srv-name">IV.Fashion Products</h2>
+          <p class="srv-short">Mode africaine contemporaine comme manifeste</p>
+        </div>
+        <span class="srv-arrow">›</span>
+      </div>
+      <div class="srv-panel">
+        <div class="panel-inner">
+          <p class="panel-desc">Des pagnes aux coupes architecturales, nos collections fusionnent le savoir-faire des
+            tisserands africains avec une vision de mode globale. Chaque pièce est une déclaration — porter African
+            Queen Empire, c'est affirmer son héritage.</p>
+          <div class="gallery">
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#2a0a2a,#6b1a6b);">
+                <div class="gal-img-inner">
+                  <img src="/images/FP1.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Couture</span>
+                  <p class="gal-caption">Robes à imprimés bogolan contemporains</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#1a0800,#4d2400);">
+                <div class="gal-img-inner">
+                  <img src="/images/FP2.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Accessoires</span>
+                  <p class="gal-caption">Sacs en raphia tressé et cuir naturel</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a1a0a,#1a4a20);">
+                <div class="gal-img-inner">
+                  <img src="/images/FP3.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Prêt-à-porter</span>
+                  <p class="gal-caption">Collections capsule saison 2025</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a0a20,#1a1a5a);">
+                <div class="gal-img-inner">
+                  <img src="/images/FP4.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Sur mesure</span>
+                  <p class="gal-caption">Tenues de cérémonie personnalisées</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE 5 -->
+    <div class="srv-item" data-index="4">
+      <div class="srv-trigger">
+        <div class="srv-dot"></div>
+        <div class="srv-thumb">
+          <img src="/images/woman.png" alt="">
+        </div>
+        <div class="srv-meta">
+          <h2 class="srv-name">V.Natural Hair Elegance</h2>
+          <p class="srv-short">La texture naturelle célébrée en couronne</p>
+        </div>
+        <span class="srv-arrow">›</span>
+      </div>
+      <div class="srv-panel">
+        <div class="panel-inner">
+          <p class="panel-desc">Tresses, locks, twists, afros — chaque texture est une couronne à porter avec fierté.
+            Nos spécialistes en capillologie naturelle africaine proposent soins, styling et formations pour célébrer
+            et préserver la beauté authentique des cheveux naturels.</p>
+          <div class="gallery">
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a1a2a,#1a4060);">
+                <div class="gal-img-inner">
+                  <img src="/images/NH1.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Styling</span>
+                  <p class="gal-caption">Box braids ornées de fils dorés</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#1a0a00,#3d2200);">
+                <div class="gal-img-inner">
+                  <img src="/images/NH2.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Soins</span>
+                  <p class="gal-caption">Masques à l'huile de karité pur</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#0a200a,#1a5020);">
+                <div class="gal-img-inner">
+                  <img src="/images/NH3.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Formation</span>
+                  <p class="gal-caption">Ateliers tressage et capillologie naturelle</p>
+                </div>
+              </div>
+            </div>
+            <div class="gal-card">
+              <div class="gal-img" style="background:linear-gradient(135deg,#200a20,#501050);">
+                <div class="gal-img-inner">
+                  <img src="/images/NH4.jpg" alt="">
+                </div>
+                <div class="gal-overlay"></div>
+                <div class="gal-info"><span class="gal-label">Produits</span>
+                  <p class="gal-caption">Gamme naturelle aux plantes africaines</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">African Queen Empire</div>
+        <p>Une marque de lifestyle africaine qui célèbre la beauté, la créativité et l'hospitalité.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/profile.php?id=61586875303123" class="footer-social" target="_blank"
+            rel="noopener noreferrer" aria-label="Facebook">
+            <i class="ti ti-brand-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/africanqueenempire1/" class="footer-social" target="_blank"
+            rel="noopener noreferrer" aria-label="Instagram">
+            <i class="ti ti-brand-instagram"></i>
+          </a>
+          <a href="https://www.tiktok.com/@africanqueenempire?_r=1&_t=ZM-91zcYTQsv5X&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnIXvDgFunqvECkfp84ajEpfC24c6m3VC8wp2kkil23cmI1JZsRfo4XuovMJY_aem_m_NbdTqgu6Eh9gLqoYqH4g"
+            class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <i class="ti ti-brand-tiktok"></i>
+          </a>
+          <a href="https://www.threads.com/@africanqueenempire1?xmt=AQG0RdDXgb2WW82eY8gIYhg-riUjku5CD4bEd4MSJA8b_KA"
+            class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Threads">
+            <i class="ti ti-brand-threads"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <RouterLink to="/home">Accueil</RouterLink>
+        <RouterLink to="/services">Services</RouterLink>
+        <RouterLink to="/shop">Shop</RouterLink>
+        <RouterLink to="/menu">Menu</RouterLink>
+      </div>
+      <div class="footer-col">
+        <h4>Contacts</h4>
+        <div class="footer-contact-item">
+          <i class="ti ti-map-pin"></i>
+          <span>Bujumbura, Burundi</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="ti ti-phone"></i>
+          <span>
+            <br>+257 61 205 463
+            <br>+257 68 634 836
+            <br>+257 61 258 758
+          </span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="ti ti-mail"></i>
+          <span>africanqueenempirebuja@gmail.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 AFRICAN QUEEN EMPIRE · TOUS DROITS RÉSERVÉS</span>
+    </div>
+  </footer>
 </template>
 <script setup>
-import{ ref } from 'vue'
+import { ref } from 'vue'
 import { onMounted } from 'vue'
 const mobileOpen = ref(false)
 onMounted(() => {
@@ -542,6 +535,7 @@ onMounted(() => {
   margin: 0;
   padding: 0;
 }
+
 .page {
   background: #faf8f4;
   font-family: 'Poppins', sans-serif;
@@ -1234,9 +1228,10 @@ onMounted(() => {
 
 
 .hamburger span {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 24px;
-  height: 2px;
+  height: 20px;
   background: #000;
   transition: all .3s;
 }
@@ -1252,14 +1247,42 @@ onMounted(() => {
 .hamburger.open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
+
+.main-nav-container {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex-shrink: 0;
+}
+
+.main-nav-container a {
+  text-decoration: none;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.main-nav-container a:hover {
+  color: #d4af37;
+}
+
+.hamburger {
+  display: none;
+}
+
 @media (max-width: 850px) {
   .logo img {
     width: 18vw;
     height: auto;
   }
-  .hamburger{
-    display:flex;
+
+  .hamburger {
+    display: flex;
   }
+
   .header-bar {
     display: flex;
     flex-direction: row;
@@ -1274,58 +1297,18 @@ onMounted(() => {
     padding-right: 0vw;
     width: 100vw;
   }
-  .main-nav-container {
-    position: absolute;
-    top: 90px;
-    right: 20px;
-    width: 30vw;
-    height: max-content;
-    display: flex;
-    flex-direction: column;
-    background: #a46746f4;
-    border-radius: 18px;
-    padding: 20px;
-    gap: 18px;
-    transform: scale(.9);
-    opacity: 0;
-    visibility: hidden;
-    transition: .35s;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
 
-  }
 
   /* =========================
    NAVIGATION DESKTOP
 ========================= */
-
-  .main-nav-container {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-  }
-
-  .main-nav-container a {
-    text-decoration: none;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    transition: color 0.25s ease;
-  }
-
-  .main-nav-container a:hover {
-    color: #d4af37;
-  }
-
-
   /* =========================
    HAMBURGER
 ========================= */
 
   .hamburger {
-    display: none;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 5px;
 
     width: 42px;
@@ -1343,7 +1326,8 @@ onMounted(() => {
   }
 
   .hamburger span {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 26px;
     height: 3px;
     background: #0e0b0b;
@@ -1503,26 +1487,39 @@ onMounted(() => {
     transform: translateX(100%);
   }
 }
- @media (max-width: 900px) {
-    .header-bar{
-      display: flex;
-      flex-direction:row;
-    }
 
-    .main-nav-container {
-      display: none;
-    }
-
-    .hamburger {
-      display: flex;
-    }
+@media (max-width: 900px) {
+  .header-bar {
+    display: flex;
+    flex-direction: row;
   }
 
-  .main-nav-container a {
-    margin: 0;
-    width: 100%;
-    height: 6vw;
-    text-align: left;
+  .main-nav-container {
+    display: none;
   }
 
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+  }
+
+  .hamburger span {
+    display: flex;
+    flex-direction: column;
+    width: 26px;
+    height: 3px;
+    background: #0e0b0b;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+}
 </style>
