@@ -10,7 +10,6 @@
             <RouterLink to="/services">Services</RouterLink>
             <RouterLink to="/menu">Menu</RouterLink>
             <RouterLink to="/shop">Shop</RouterLink>
-            <RouterLink to="/">Contact</RouterLink>
           </nav>
           <button v-if="!mobileOpen" class="hamburger" @click="mobileOpen = true" aria-label="Menu">
             <span></span>
@@ -513,7 +512,7 @@ html {
 }
 
 .main-nav-container a {
-  color: #000;
+  color: #ffffff;
   text-decoration: none;
   margin-left: 35px;
   font-size: .85rem;
@@ -539,7 +538,7 @@ html {
 
 .main-nav-container a {
   text-decoration: none;
-  color: #000;
+  color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   font-weight: 500;
@@ -1743,6 +1742,10 @@ html {
 }
 
 @media(max-width:1100px) {
+  .logo img {
+    width: 15vw;
+    height: auto;
+  }
   .header-bar {
     display: flex;
     flex-direction: row;
@@ -1788,11 +1791,6 @@ html {
     line-height: 1;
   }
 
-
-  /* =========================
-   DRAWER LOGO
-========================= */
-
   .drawer-logo {
     display: flex;
 
@@ -1808,11 +1806,6 @@ html {
 
     object-fit: contain;
   }
-
-
-  /* =========================
-   DRAWER LINKS
-========================= */
 
   .drawer-links {
     display: flex;
@@ -1855,12 +1848,6 @@ html {
     color: #b08d20;
     font-weight: 600;
   }
-
-
-  /* =========================
-   DRAWER ANIMATION
-   Même principe que GCMBC
-========================= */
 
   .drawer-enter-active,
   .drawer-leave-active {
