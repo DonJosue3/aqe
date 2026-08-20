@@ -1817,23 +1817,14 @@ html {
 
   .drawer-link {
     display: block;
-
     width: 100%;
-
     padding: 16px 5px;
-
     text-decoration: none;
-
     color: #333;
-
     font-family: 'Poppins', sans-serif;
-
     font-size: 17px;
-
     font-weight: 500;
-
     border-bottom: 1px solid #eeeeee;
-
     transition:
       color 0.25s ease,
       padding-left 0.25s ease;

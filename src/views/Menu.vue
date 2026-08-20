@@ -807,8 +807,8 @@ const mobileOpen = ref(false)
 }
 
 .image1 {
-  width: 270px;
-  height: 270px;
+  width: 210px;
+  height: 210px;
   top: -80px;
   left: -80px;
   z-index: 1
@@ -816,8 +816,8 @@ const mobileOpen = ref(false)
 
 .image2 {
   filter: drop-shadow(-10px -10px 10px #515050);
-  width: 270px;
-  height: 270px;
+  width: 220px;
+  height: 220px;
   bottom: -80px;
   left: 340px;
   z-index: 1
@@ -827,9 +827,8 @@ const mobileOpen = ref(false)
   filter: drop-shadow(-10px -10px 10px #515050);
   width: 200px;
   height: 200px;
-  bottom: -10px;
+  bottom: -40px;
   left: 20px;
-  z-index: 1
 }
 
 .image4 {
@@ -868,10 +867,10 @@ const mobileOpen = ref(false)
 }
 
 .image9 {
-  bottom: -50px;
+  bottom: -80px;
   left: -20px;
-  height: 200px;
-  width: 200px
+  height: 190px;
+  width: 180px
 }
 
 .image10 {
@@ -1064,12 +1063,13 @@ h1 {
   padding: 5px
 }
 
+.three,
 .premier,
 .second {
-  width: 100wh;
-  height: 100vh;
+  width: 100vw;
+  height: max-content;
   display: flex;
-  flex-direction: row
+  flex-direction: row;
 }
 
 .footer {
@@ -1377,7 +1377,7 @@ h1 {
 
 .hamburger span {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   width: 24px;
   height: 2px;
   background: #000;
@@ -1422,6 +1422,22 @@ h1 {
 }
 
 @media (max-width: 1100px) {
+  .image2 {
+    width: 25vw;
+    height: auto;
+    bottom: -8vw;
+    left: 70vw;
+  }
+  .premier,
+  .second,
+  .three {
+    width: 100vw;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+
+  }
+
   .logo img {
     width: 15vw;
     height: auto;
@@ -1459,6 +1475,7 @@ h1 {
     border-radius: 2px;
     transition: all 0.3s ease;
   }
+
   .mobile-overlay {
     position: fixed;
     inset: 0;
@@ -1467,6 +1484,7 @@ h1 {
     display: flex;
     justify-content: flex-end;
   }
+
   .mobile-drawer {
     width: 60vw;
     max-width: 85vw;
@@ -1478,78 +1496,47 @@ h1 {
     box-sizing: border-box;
     overflow-y: auto;
   }
+
   .drawer-close {
     align-self: flex-end;
-
     width: 40px;
     height: 40px;
-
     background: transparent;
-
     border: none;
-
     font-size: 28px;
-
     color: #333;
-
     cursor: pointer;
-
     line-height: 1;
   }
 
-
-  /* =========================
-   DRAWER LOGO
-========================= */
-
   .drawer-logo {
     display: flex;
-
     justify-content: center;
-
     margin: 20px 0 35px;
   }
 
   .drawer-logo img {
     width: 150px;
-
     height: auto;
-
     object-fit: contain;
   }
 
-
-  /* =========================
-   DRAWER LINKS
-========================= */
-
   .drawer-links {
     display: flex;
-
     flex-direction: column;
-
     gap: 0;
   }
 
   .drawer-link {
     display: block;
-
     width: 100%;
-
     padding: 16px 5px;
-
     text-decoration: none;
-
     color: #333;
-
     font-family: 'Poppins', sans-serif;
-
     font-size: 17px;
-
     font-weight: 500;
-
     border-bottom: 1px solid #eeeeee;
-
     transition:
       color 0.25s ease,
       padding-left 0.25s ease;
@@ -1564,12 +1551,6 @@ h1 {
     color: #b08d20;
     font-weight: 600;
   }
-
-
-  /* =========================
-   DRAWER ANIMATION
-   Même principe que GCMBC
-========================= */
 
   .drawer-enter-active,
   .drawer-leave-active {
@@ -1594,7 +1575,9 @@ h1 {
     transform: translateX(100%);
   }
 }
+
 @media (max-width:850px) {
+
   .hamburger {
     display: flex;
   }
@@ -1659,8 +1642,6 @@ h1 {
     height: max-content;
   }
 
-
-
   .main-nav-container {
     position: absolute;
     top: 90px;
@@ -1681,10 +1662,6 @@ h1 {
 
   }
 
-  /* =========================
-   NAVIGATION DESKTOP
-========================= */
-
   .main-nav-container {
     display: flex;
     align-items: center;
@@ -1704,27 +1681,17 @@ h1 {
     color: #d4af37;
   }
 
-
-  /* =========================
-   HAMBURGER
-========================= */
-
   .hamburger {
     display: none;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-
     width: 42px;
     height: 42px;
-
     padding: 8px;
-
     background: transparent;
     border: none;
-
     cursor: pointer;
-
     position: relative;
     z-index: 1000;
   }
@@ -1737,9 +1704,7 @@ h1 {
     border-radius: 2px;
     transition: all 0.3s ease;
   }
-  /* =========================
-   MOBILE OVERLAY
-========================= */
+
   .mobile-overlay {
     position: fixed;
     inset: 0;
@@ -1748,9 +1713,7 @@ h1 {
     display: flex;
     justify-content: flex-end;
   }
-  /* =========================
-   MOBILE DRAWER
-========================= */
+
   .mobile-drawer {
     width: 60vw;
     max-width: 85vw;
@@ -1762,9 +1725,7 @@ h1 {
     box-sizing: border-box;
     overflow-y: auto;
   }
-  /* =========================
-   CLOSE BUTTON
-========================= */
+
   .drawer-close {
     align-self: flex-end;
     width: 40px;
@@ -1776,9 +1737,7 @@ h1 {
     cursor: pointer;
     line-height: 1;
   }
-  /* =========================
-   DRAWER LOGO
-========================= */
+
   .drawer-logo {
     display: flex;
     justify-content: center;
@@ -1790,9 +1749,7 @@ h1 {
     height: auto;
     object-fit: contain;
   }
-  /* =========================
-   DRAWER LINKS
-========================= */
+
   .drawer-links {
     display: flex;
     flex-direction: column;
@@ -1823,10 +1780,7 @@ h1 {
     color: #b08d20;
     font-weight: 600;
   }
-  /* =========================
-   DRAWER ANIMATION
-   Même principe que GCMBC
-========================= */
+
   .drawer-enter-active,
   .drawer-leave-active {
     transition: opacity 0.25s ease;
@@ -1851,104 +1805,66 @@ h1 {
   }
 }
 
-  /* =========================
-   RESPONSIVE
-========================= */
+@media (max-width: 900px) {
 
-  @media (max-width: 900px) {
-    .header-bar{
-      display: flex;
-      flex-direction:row;
-    }
-
-    .main-nav-container {
-      display: none;
-    }
-
-    .hamburger {
-      display: flex;
-    }
-  }
-
-  .main-nav-container a {
-    margin: 0;
-    width: 100%;
-    height: 6vw;
-    text-align: left;
-  }
-
-  .footer-top {
+  .header-bar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
-  .site-footer {
-    padding-right: 0vw;
-    width: 100vw;
+  .main-nav-container {
+    display: none;
   }
 
-  .premier,
-  .second,
-  .three {
-    width: 100vw;
-    height: max-content;
+  .hamburger {
     display: flex;
-    flex-direction: column;
-
   }
+}
 
-  .menutoo,
-  .menuone {
-    display: flex;
-    align-items: flex-start;
-    gap: 4vw;
-    width: 90vw;
-    height: max-content;
-    margin: 0px;
-    margin-top: 2vw;
-    margin-bottom: 2vw;
-  }
+.main-nav-container a {
+  margin: 0;
+  width: 100%;
+  height: 6vw;
+  text-align: left;
+}
 
-  .cardtrois,
-  .cardquatre,
-  .cardcinq,
-  .carddeux,
-  .cardun {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 3vw;
-    margin-right: 3vw;
-    margin-top: 3vw;
-    width: 94vw;
-    height: max-content;
+.footer-top {
+  display: flex;
+  flex-direction: column;
+}
 
-  }
+.site-footer {
+  padding-right: 0vw;
+  width: 100vw;
+}
 
-  .image1 {
-    width: 40vw;
-    height: auto;
-    top: -14vw;
-    left: -14vw;
-  }
+.cardtrois,
+.cardquatre,
+.cardcinq,
+.carddeux,
+.cardun {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  margin-top: 3vw;
+  width: 94vw;
+  height: max-content;
 
-  .image2 {
-    width: 40vw;
-    height: auto;
-    bottom: -14vw;
-    left: 64vw;
-  }
+}
 
-  .un {
-    padding-top: 2vw;
-    box-sizing: border-box;
-    padding-top: 20vw;
-  }
 
-  .deux {
-    height: max-content;
-    box-sizing: border-box;
-  }
+
+.un {
+  padding-top: 110px;
+  box-sizing: border-box;
+}
+
+.deux {
+  height: max-content;
+  box-sizing: border-box;
+}
 
 
 
@@ -1974,7 +1890,7 @@ h1 {
     width: 40vw;
     height: auto;
     bottom: -14vw;
-    left: 64vw;
+    left: 50vw;
   }
 
   .image3 {
