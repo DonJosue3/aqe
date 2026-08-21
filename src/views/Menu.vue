@@ -57,352 +57,127 @@
         <h1>Our Menu</h1>
       </div>
     </div>
-    <div class="premier">
+    <div v-if="menu" class="premier">
       <div class="cardun">
         <div class="menuone"><img class="image1" src="/images/fr2.png" alt="Plat 1">
+
           <div class="un">
-            <h1>Plats du jour</h1>
+            <h1>{{ menu.platsDuJour.title }}</h1>
             <div class="line1"></div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Pommes de terre sautées
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Petits pois
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Émincés de bœuf/poulet
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Patates douces sautées
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Épinards
-              </div>
-            </div>
-            <div class="menu-item" style="justify-content:flex-end"><span class="prix">25.000 / 35.000 fbu</span></div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Bananes vertes (agatoki)
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Petits pois
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Lenga lenga
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Émincés de bœuf/poulet
-              </div>
-            </div>
-            <div class="menu-item" style="justify-content:flex-end"><span class="prix">25.000 / 35.000 fbu</span></div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Intete
-              </div><span class="prix">15.000 fbu</span>
+
+            <div v-for="(item, index) in menu.platsDuJour.column1" :key="`column1-${index}`" class="menu-item"
+              :style="item.type === 'price' ? 'justify-content:flex-end' : ''">
+              <template v-if="item.type === 'price'">
+                <span class="prix">{{ item.price }}</span>
+              </template>
+
+              <template v-else>
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
+
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
+              </template>
             </div>
           </div>
           <div class="deux">
+            <div v-for="(item, index) in menu.platsDuJour.column2" :key="`column2-${index}`" class="menu-item"
+              :style="item.type === 'price' ? 'justify-content:flex-end' : ''">
+              <template v-if="item.type === 'price'">
+                <span class="prix">{{ item.price }}</span>
+              </template>
 
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Riz cantonais
-              </div>
+              <template v-else>
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
+
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
+              </template>
             </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Salade
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Frites
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Bœuf/poulet aux oignons
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Pâte de blé/manioc
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Riz épicé
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Haricots
-              </div>
-            </div>
-            <div class="menu-item" style="justify-content:flex-end"><span class="prix">25.000 / 35.000 fbu</span></div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Chapati
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Haricots
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Légumes du jour
-              </div>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Bœuf/poulet aux oignons
-              </div>
-            </div>
-            <div class="menu-item" style="justify-content:flex-end"><span class="prix">20.000 / 30.000 fbu</span></div>
           </div><img class="image2" src="/images/FR1.png" alt="Plat 2">
         </div>
       </div>
       <div class="carddeux">
         <div class="menutoo">
           <div class="trois">
-            <h1>Nos Spécialités</h1>
+            <h1>{{ menu.specialites.title }}</h1>
             <div class="line1"></div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Rolled eggs(Rolex)
-              </div><span class="prix">20.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Riz cantonais
-              </div><span class="prix">25.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Salade du chef
-              </div><span class="prix">25.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Queens salade
-              </div><span class="prix">35.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Brochette spéciale
-              </div><span class="prix">25.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Sandwich steak
-              </div><span class="prix">30.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Sandwich poulet
-              </div><span class="prix">35.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Sandwich au thon
-              </div><span class="prix">30.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Shawarma au boeuf
-              </div><span class="prix">25.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Shawarma au poulet
-              </div><span class="prix">35.000 fbu</span>
-            </div><img class="image3" src="/images/ns1.png" alt="">
+            <template v-for="(item, index) in menu.specialites.items.slice(0, 10)" :key="`specialite-${index}`">
+              <div class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
+
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
+              </div>
+            </template>
+            <img class="image3" src="/images/ns1.png" alt="">
           </div><img class="image4" src="/images/ns2.png" alt="">
           <div class="quatre">
             <div class="deuxdeux">
+              <div v-for="(item, index) in menu.specialites.items.slice(10)" :key="`specialite-${index + 10}`" class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
 
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Quesadilla au boeuf
-                </div><span class="prix">25.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Quesadilla au poulet
-                </div><span class="prix">35.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Piadina
-                </div><span class="prix">15.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Quiche loraine
-                </div><span class="prix">25.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Frites salade
-                </div><span class="prix">15.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Hamburger
-                </div><span class="prix">25.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Cheeseburger
-                </div><span class="prix">30.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Chapati salade
-                </div><span class="prix">15.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Soupe aux legumes
-                </div><span class="prix">20.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Soupe au boeuf
-                </div><span class="prix">25.000 fbu</span>
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="second">
+    <div v-if="menu" class="second">
       <div class="cardtrois">
         <div class="menuthree">
           <div class="cinq">
-            <h1>Boissons</h1>
+            <h1>{{ menu.boissons.title }}</h1>
             <div class="line1"></div>
-            <div class="menu-item">
+            <div v-for="item in menu.boissons.items" :key="item.name" class="menu-item">
               <div class="nom">
-                <div class="point"></div>Eau minérale
-              </div><span class="prix">3.000 fbu</span>
+                <div class="point"></div>
+                {{ item.name }}
+              </div>
+
+              <span v-if="item.price" class="prix">
+                {{ item.price }}
+              </span>
             </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Fanta
-              </div><span class="prix">4.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Jus tropical frais
-              </div><span class="prix">12.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Thé citron gingembre
-              </div><span class="prix">12.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Thé noir
-              </div><span class="prix">10.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Café noir
-              </div><span class="prix">10.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>African coffee
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Chocolat chaud
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Café au lait
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Thé Africain
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Thé russe
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Verre de lait
-              </div><span class="prix">5.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Milkshake
-              </div><span class="prix">25.000 fbu</span>
-            </div><img class="image5" src="/images/cd4.png" alt="Plat 1">
+            <img class="image5" src="/images/cd4.png" alt="Plat 1">
           </div><img class="image6" src="/images/cd1.png" alt="">
           <div class="six">
-            <h1>Petit Déjeuner</h1>
+            <h1>{{ menu.petitDejeuner.title }}</h1>
             <div class="line1"></div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Classique
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="description">(pain toasté, confiture, thé ou café)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Healthy
-              </div><span class="prix">25.000 fbu</span>
-            </div>
-            <div class="description">(yaourt / fruits / granola)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Anglais
-              </div><span class="prix">30.000 fbu</span>
-            </div>
-            <div class="description">(pain toasté / omelette / haricots / saucisse / thé ou café)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Français
-              </div><span class="prix">30.000 fbu</span>
-            </div>
-            <div class="description">(croissant jambon-fromage / omelette / jus)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Queen's spécial
-              </div><span class="prix">30.000 fbu</span>
-            </div>
-            <div class="description">(pain toasté / avocat / omelette / salade de fruits / thé ou café)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Burundi spécial
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="description">(chapati / haricots / thé)</div>
+
+            <template v-for="item in menu.petitDejeuner.items" :key="item.name">
+              <div class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
+
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
+              </div>
+
+              <div v-if="item.description" class="description">
+                {{ item.description }}
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -410,229 +185,77 @@
         <div class="menuquatre"><img class="image7" src="/images/p2.png" alt="">
           <div class="sept">
             <div class="deuxdeux">
+              <div v-for="(item, index) in menu.petitsPlus.items" :key="`plus-${index}`" class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
 
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Pain Perdu
-                </div><span class="prix">5.000 fbu</span>
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
               </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Pain Chocolat
-                </div><span class="prix">8.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Pain Fromage
-                </div><span class="prix">8.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Pain Jambo &amp; Fromage
-                </div><span class="prix">10.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Pain Viande
-                </div><span class="prix">10.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Sambussa (6)
-                </div><span class="prix">10.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Crepes Natures(4)
-                </div><span class="prix">15.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Crepes au Chocolat (4)
-                </div><span class="prix">20.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Pain Etoile
-                </div><span class="prix">8.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Tarte aux Fruits
-                </div><span class="prix">15.000 fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Tartelettes à la crème
-                </div><span class="prix">25.000 fbu</span>
-              </div>
-
-
-
             </div>
           </div><img class="image8" src="/images/p1.png" alt="">
           <div class="huit">
-            <h1>Patisseries</h1>
+            <h1>{{ menu.patisseries.title }}</h1>
             <div class="line1"></div>
-            <div class="menu-item">
+
+            <div v-for="item in menu.patisseries.items" :key="item.name" class="menu-item">
               <div class="nom">
-                <div class="point"></div>Kish
-              </div><span class="prix">20.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Chapati
-              </div><span class="prix">2.500 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Sandwich Club
-              </div><span class="prix">30.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Queen's Dessert
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Biscuits(4)
-              </div><span class="prix">2.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Cake Bloc
-              </div><span class="prix">30.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Croissants
-              </div><span class="prix">8.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Mini Beignets(40)
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Galettes Nature(4)
-              </div><span class="prix">15.000 fbu</span>
-            </div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div>Galettes au Chocolat (4)
-              </div><span class="prix">20.000 fbu</span>
+                <div class="point"></div>
+                {{ item.name }}
+              </div>
+
+              <span v-if="item.price" class="prix">
+                {{ item.price }}
+              </span>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="three">
+    <div v-if="menu" class="three">
       <div class="cardcinq">
         <div class="menucinq">
           <div class="neuf">
             <div class="deuxdeux">
               <div class="titre">
-                <h1>Portions</h1>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Frites
-                </div><span class="prix">12.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Riz
-                </div><span class="prix">10.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Salade
-                </div><span class="prix">10.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Emincés de boeuf
-                </div><span class="prix">12.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Haricots
-                </div><span class="prix">5.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Legumes
-                </div><span class="prix">5.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Avocats
-                </div><span class="prix">5.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Tranches de pain
-                </div><span class="prix">5.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Mayonaise
-                </div><span class="prix">3.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Ketchup
-                </div><span class="prix">3.000fbu</span>
-              </div>
-              <div class="menu-item">
-                <div class="nom">
-                  <div class="point"></div>Citron
-                </div><span class="prix">2.000fbu</span>
+                <h1>{{ menu.portions.title }}</h1>
               </div>
 
+              <div v-for="item in menu.portions.items" :key="item.name" class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
+
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
+              </div>
             </div>
           </div><img class="image9" src="/images/r1.png" alt=""><img class="image10" src="/images/pi1.png" alt="">
           <div class="dix">
-            <h1>Pizza</h1>
+            <h1>{{ menu.pizza.title }}</h1>
             <div class="line1"></div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div> Vegetarienne
-              </div><span class="prix">40.000 fbu</span>
-            </div>
-            <div class="description">(Oignons, poivrons, tomate, fromage)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div> Pizza Mafioso
-              </div><span class="prix">45.000 fbu</span>
-            </div>
-            <div class="description">(Oignons, poivrons, jambon, fromage)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div> Pizza Hawai
-              </div><span class="prix">45.000 fbu</span>
-            </div>
-            <div class="description"> (Oignons, poivrons, jambon, ananas,fromage)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div> Pizza au boeuf
-              </div><span class="prix">45.000 fbu</span>
-            </div>
-            <div class="description">(Tomates, oignons, poivrons, boeuf haché,fromage)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div> Pizza au Poulet
-              </div><span class="prix">45.000 fbu</span>
-            </div>
-            <div class="description">(Oignons, poivrons, tomates, poulet, fromage)</div>
-            <div class="menu-item">
-              <div class="nom">
-                <div class="point"></div> Kila kitu
-              </div><span class="prix">55.000 fbu</span>
-            </div>
-            <div class="description">(Oignons, tomates, poivrons,jambon, poulet, champignons)</div>
+
+            <template v-for="item in menu.pizza.items" :key="item.name">
+              <div class="menu-item">
+                <div class="nom">
+                  <div class="point"></div>
+                  {{ item.name }}
+                </div>
+
+                <span v-if="item.price" class="prix">
+                  {{ item.price }}
+                </span>
+              </div>
+
+              <div v-if="item.description" class="description">
+                {{ item.description }}
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -681,8 +304,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
 const mobileOpen = ref(false)
+const menu = ref(null)
+const menuError = ref(false)
+
+onMounted(async () => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.BASE_URL}data/menu.json`
+    )
+
+    if (!response.ok) {
+      throw new Error('Impossible de charger menu.json')
+    }
+
+    menu.value = await response.json()
+  } catch (error) {
+    console.error('Erreur lors du chargement du menu :', error)
+    menuError.value = true
+  }
+})
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -1428,6 +1071,7 @@ h1 {
     bottom: -8vw;
     left: 70vw;
   }
+
   .premier,
   .second,
   .three {

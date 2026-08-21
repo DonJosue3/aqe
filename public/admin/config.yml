@@ -66,3 +66,234 @@ collections:
                 options:
                   - short
                   - tall
+  - name: "menu"
+    label: "Menu"
+
+    files:
+      - label: "Menu du restaurant"
+        name: "menu"
+        file: "public/data/menu.json"
+
+        fields:
+
+          - label: "Plats du jour"
+            name: "platsDuJour"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Colonne 1"
+                name: "column1"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+              - label: "Colonne 2"
+                name: "column2"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+          - label: "Nos Spécialités"
+            name: "specialites"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Plats"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+                  - label: "Description"
+                    name: "description"
+                    widget: "text"
+                    required: false
+
+          - label: "Boissons"
+            name: "boissons"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Boissons"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+          - label: "Petit Déjeuner"
+            name: "petitDejeuner"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Articles"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+                  - label: "Description"
+                    name: "description"
+                    widget: "text"
+                    required: false
+
+          - label: "Petits plus"
+            name: "petitsPlus"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Articles"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+          - label: "Patisseries"
+            name: "patisseries"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Patisseries"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+          - label: "Portions"
+            name: "portions"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Portions"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+          - label: "Pizza"
+            name: "pizza"
+            widget: "object"
+
+            fields:
+              - label: "Titre"
+                name: "title"
+                widget: "string"
+
+              - label: "Pizzas"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} - {{fields.price}}"
+
+                fields:
+                  - label: "Nom"
+                    name: "name"
+                    widget: "string"
+
+                  - label: "Prix"
+                    name: "price"
+                    widget: "string"
+                    required: false
+
+                  - label: "Description"
+                    name: "description"
+                    widget: "text"
+                    required: false

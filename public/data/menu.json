@@ -1,0 +1,496 @@
+{
+  "platsDuJour": {
+    "title": "Plats du jour",
+    "column1": [
+      {
+        "type": "item",
+        "name": "Pommes de terre sautées",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Petits pois",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Émincés de bœuf/poulet",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Patates douces sautées",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Épinards",
+        "price": ""
+      },
+      {
+        "type": "price",
+        "name": "",
+        "price": "25.000 / 35.000 fbu"
+      },
+      {
+        "type": "item",
+        "name": "Bananes vertes (agatoki)",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Petits pois",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Lenga lenga",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Émincés de bœuf/poulet",
+        "price": ""
+      },
+      {
+        "type": "price",
+        "name": "",
+        "price": "25.000 / 35.000 fbu"
+      },
+      {
+        "type": "item",
+        "name": "Intete",
+        "price": "15.000 fbu"
+      }
+    ],
+    "column2": [
+      {
+        "type": "item",
+        "name": "Riz cantonais",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Salade",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Frites",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Bœuf/poulet aux oignons",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Pâte de blé/manioc",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Riz épicé",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Haricots",
+        "price": ""
+      },
+      {
+        "type": "price",
+        "name": "",
+        "price": "25.000 / 35.000 fbu"
+      },
+      {
+        "type": "item",
+        "name": "Chapati",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Haricots",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Légumes du jour",
+        "price": ""
+      },
+      {
+        "type": "item",
+        "name": "Bœuf/poulet aux oignons",
+        "price": ""
+      },
+      {
+        "type": "price",
+        "name": "",
+        "price": "20.000 / 30.000 fbu"
+      }
+    ]
+  },
+
+  "specialites": {
+    "title": "Nos Spécialités",
+    "items": [
+      {
+        "name": "Rolled eggs(Rolex)",
+        "price": "20.000 fbu"
+      },
+      {
+        "name": "Riz cantonais",
+        "price": "25.000 fbu"
+      },
+      {
+        "name": "Salade du chef",
+        "price": "25.000 fbu"
+      },
+      {
+        "name": "Queens salade",
+        "price": "35.000 fbu"
+      },
+      {
+        "name": "Brochette spéciale",
+        "price": "25.000 fbu"
+      },
+      {
+        "name": "Sandwich steak",
+        "price": "30.000 fbu"
+      },
+      {
+        "name": "Sandwich poulet",
+        "price": "35.000 fbu"
+      },
+      {
+        "name": "Sandwich au thon",
+        "price": "30.000 fbu"
+      },
+      {
+        "name": "Shawarma au boeuf",
+        "price": "25.000 fbu"
+      },
+      {
+        "name": "Shawarma au poulet",
+        "price": "35.000 fbu"
+      },
+      {
+        "name": "Quesadilla au boeuf",
+        "price": "25.000 fbu"
+      },
+      {
+        "name": "Quesadilla au poulet",
+        "price": "35.000 fbu"
+      },
+      {
+        "name": "Piadina",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Quiche loraine",
+        "price": "25.000 fbu"
+      },
+      {
+        "name": "Frites salade",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Hamburger",
+        "price": "25.000 fbu"
+      },
+      {
+        "name": "Cheeseburger",
+        "price": "30.000 fbu"
+      },
+      {
+        "name": "Chapati salade",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Soupe aux legumes",
+        "price": "20.000 fbu"
+      },
+      {
+        "name": "Soupe au boeuf",
+        "price": "25.000 fbu"
+      }
+    ]
+  },
+
+  "boissons": {
+    "title": "Boissons",
+    "items": [
+      {
+        "name": "Eau minérale",
+        "price": "3.000 fbu"
+      },
+      {
+        "name": "Fanta",
+        "price": "4.000 fbu"
+      },
+      {
+        "name": "Jus tropical frais",
+        "price": "12.000 fbu"
+      },
+      {
+        "name": "Thé citron gingembre",
+        "price": "12.000 fbu"
+      },
+      {
+        "name": "Thé noir",
+        "price": "10.000 fbu"
+      },
+      {
+        "name": "Café noir",
+        "price": "10.000 fbu"
+      },
+      {
+        "name": "African coffee",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Chocolat chaud",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Café au lait",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Thé Africain",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Thé russe",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Verre de lait",
+        "price": "5.000 fbu"
+      },
+      {
+        "name": "Milkshake",
+        "price": "25.000 fbu"
+      }
+    ]
+  },
+
+  "petitDejeuner": {
+    "title": "Petit Déjeuner",
+    "items": [
+      {
+        "name": "Classique",
+        "price": "15.000 fbu",
+        "description": "(pain toasté, confiture, thé ou café)"
+      },
+      {
+        "name": "Healthy",
+        "price": "25.000 fbu",
+        "description": "(yaourt / fruits / granola)"
+      },
+      {
+        "name": "Anglais",
+        "price": "30.000 fbu",
+        "description": "(pain toasté / omelette / haricots / saucisse / thé ou café)"
+      },
+      {
+        "name": "Français",
+        "price": "30.000 fbu",
+        "description": "(croissant jambon-fromage / omelette / jus)"
+      },
+      {
+        "name": "Queen's spécial",
+        "price": "30.000 fbu",
+        "description": "(pain toasté / avocat / omelette / salade de fruits / thé ou café)"
+      },
+      {
+        "name": "Burundi spécial",
+        "price": "15.000 fbu",
+        "description": "(chapati / haricots / thé)"
+      }
+    ]
+  },
+
+  "petitsPlus": {
+    "title": "Petits plus",
+    "items": [
+      {
+        "name": "Pain Perdu",
+        "price": "5.000 fbu"
+      },
+      {
+        "name": "Pain Chocolat",
+        "price": "8.000 fbu"
+      },
+      {
+        "name": "Pain Fromage",
+        "price": "8.000 fbu"
+      },
+      {
+        "name": "Pain Jambo & Fromage",
+        "price": "10.000 fbu"
+      },
+      {
+        "name": "Pain Viande",
+        "price": "10.000 fbu"
+      },
+      {
+        "name": "Sambussa (6)",
+        "price": "10.000 fbu"
+      },
+      {
+        "name": "Crepes Natures(4)",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Crepes au Chocolat (4)",
+        "price": "20.000 fbu"
+      },
+      {
+        "name": "Pain Etoile",
+        "price": "8.000 fbu"
+      },
+      {
+        "name": "Tarte aux Fruits",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Tartelettes à la crème",
+        "price": "25.000 fbu"
+      }
+    ]
+  },
+
+  "patisseries": {
+    "title": "Patisseries",
+    "items": [
+      {
+        "name": "Kish",
+        "price": "20.000 fbu"
+      },
+      {
+        "name": "Chapati",
+        "price": "2.500 fbu"
+      },
+      {
+        "name": "Sandwich Club",
+        "price": "30.000 fbu"
+      },
+      {
+        "name": "Queen's Dessert",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Biscuits(4)",
+        "price": "2.000 fbu"
+      },
+      {
+        "name": "Cake Bloc",
+        "price": "30.000 fbu"
+      },
+      {
+        "name": "Croissants",
+        "price": "8.000 fbu"
+      },
+      {
+        "name": "Mini Beignets(40)",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Galettes Nature(4)",
+        "price": "15.000 fbu"
+      },
+      {
+        "name": "Galettes au Chocolat (4)",
+        "price": "20.000 fbu"
+      }
+    ]
+  },
+
+  "portions": {
+    "title": "Portions",
+    "items": [
+      {
+        "name": "Frites",
+        "price": "12.000fbu"
+      },
+      {
+        "name": "Riz",
+        "price": "10.000fbu"
+      },
+      {
+        "name": "Salade",
+        "price": "10.000fbu"
+      },
+      {
+        "name": "Emincés de boeuf",
+        "price": "12.000fbu"
+      },
+      {
+        "name": "Haricots",
+        "price": "5.000fbu"
+      },
+      {
+        "name": "Legumes",
+        "price": "5.000fbu"
+      },
+      {
+        "name": "Avocats",
+        "price": "5.000fbu"
+      },
+      {
+        "name": "Tranches de pain",
+        "price": "5.000fbu"
+      },
+      {
+        "name": "Mayonaise",
+        "price": "3.000fbu"
+      },
+      {
+        "name": "Ketchup",
+        "price": "3.000fbu"
+      },
+      {
+        "name": "Citron",
+        "price": "2.000fbu"
+      }
+    ]
+  },
+
+  "pizza": {
+    "title": "Pizza",
+    "items": [
+      {
+        "name": "Vegetarienne",
+        "price": "40.000 fbu",
+        "description": "(Oignons, poivrons, tomate, fromage)"
+      },
+      {
+        "name": "Pizza Mafioso",
+        "price": "45.000 fbu",
+        "description": "(Oignons, poivrons, jambon, fromage)"
+      },
+      {
+        "name": "Pizza Hawai",
+        "price": "45.000 fbu",
+        "description": "(Oignons, poivrons, jambon, ananas,fromage)"
+      },
+      {
+        "name": "Pizza au boeuf",
+        "price": "45.000 fbu",
+        "description": "(Tomates, oignons, poivrons, boeuf haché,fromage)"
+      },
+      {
+        "name": "Pizza au Poulet",
+        "price": "45.000 fbu",
+        "description": "(Oignons, poivrons, tomates, poulet, fromage)"
+      },
+      {
+        "name": "Kila kitu",
+        "price": "55.000 fbu",
+        "description": "(Oignons, tomates, poivrons,jambon, poulet, champignons)"
+      }
+    ]
+  }
+}
