@@ -1,15 +1,87 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <meta name="robots" content="noindex">
-  <title>African Queen Empire CMS</title>
+
+  <title>African Queen Empire — Administration</title>
+
+  <link
+    rel="stylesheet"
+    href="./admin.css"
+  >
 </head>
 
 <body>
-  <div id="nc-root"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.15.1/dist/decap-cms.js"></script>
+  <!-- Écran de connexion -->
+
+  <section id="login-screen">
+
+    <div class="login-box">
+
+      <img
+        src="/aqe/images/aqelogo.png"
+        alt="African Queen Empire"
+        class="logo"
+      >
+
+      <h1>Administration</h1>
+
+      <p>
+        Espace réservé au propriétaire
+      </p>
+
+      <form id="login-form">
+
+        <label for="password">
+          Mot de passe
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit">
+          Se connecter
+        </button>
+
+      </form>
+
+      <div
+        id="login-message"
+        class="message"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Decap CMS -->
+
+  <section
+    id="cms-screen"
+    class="hidden"
+  >
+
+    <div id="nc-root"></div>
+
+  </section>
+
+
+  <script src="./admin.js"></script>
+
 </body>
+
 </html>
