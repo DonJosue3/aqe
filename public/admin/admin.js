@@ -16,6 +16,13 @@ const passwordInput =
 const loginMessage =
   document.getElementById("login-message");
 
+let cmsLoaded = false;
+let sessionCheckInterval = null;
+
+
+// --------------------------------------------------
+// VÉRIFIER LA SESSION
+// --------------------------------------------------
 
 async function checkSession() {
 
@@ -49,25 +56,38 @@ async function checkSession() {
 }
 
 
+// --------------------------------------------------
+// AFFICHER LA PAGE DE CONNEXION
+// --------------------------------------------------
+
 function showLogin() {
 
   loginScreen.classList.remove("hidden");
 
   cmsScreen.classList.add("hidden");
 
+  passwordInput.value = "";
+
+  loginMessage.textContent = "";
+
 }
 
 
+// --------------------------------------------------
+// CHARGER DECAP
+// --------------------------------------------------
+
 function loadCMS() {
+
+  if (cmsLoaded) {
+    return;
+  }
 
   loginScreen.classList.add("hidden");
 
   cmsScreen.classList.remove("hidden");
 
-  /*
-   * Charger Decap seulement après
-   * authentification réussie.
-   */
+  cmsLoaded = true;
 
   const script =
     document.createElement("script");
@@ -81,9 +101,17 @@ function loadCMS() {
       "Decap CMS chargé."
     );
 
+    startSessionMonitoring();
+
   };
 
   script.onerror = () => {
+
+    cmsLoaded = false;
+
+    cmsScreen.classList.add("hidden");
+
+    loginScreen.classList.remove("hidden");
 
     loginMessage.textContent =
       "Impossible de charger Decap CMS.";
@@ -93,6 +121,100 @@ function loadCMS() {
   document.body.appendChild(script);
 }
 
+
+// --------------------------------------------------
+// SURVEILLER LA SESSION
+// --------------------------------------------------
+
+function startSessionMonitoring() {
+
+  if (sessionCheckInterval) {
+    clearInterval(sessionCheckInterval);
+  }
+
+  sessionCheckInterval = setInterval(
+    async () => {
+
+      try {
+
+        const response = await fetch(
+          `${API}/check-session`,
+          {
+            method: "GET",
+            credentials: "include"
+          }
+        );
+
+        if (!response.ok) {
+
+          await logoutAdmin();
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Erreur vérification session:",
+          error
+        );
+
+      }
+
+    },
+    30000
+  );
+}
+
+
+// --------------------------------------------------
+// DÉCONNEXION ADMIN
+// --------------------------------------------------
+
+async function logoutAdmin() {
+
+  if (sessionCheckInterval) {
+
+    clearInterval(
+      sessionCheckInterval
+    );
+
+    sessionCheckInterval = null;
+
+  }
+
+  try {
+
+    await fetch(
+      `${API}/logout`,
+      {
+        method: "POST",
+        credentials: "include"
+      }
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Erreur déconnexion:",
+      error
+    );
+
+  }
+
+  cmsScreen.classList.add("hidden");
+
+  loginScreen.classList.remove("hidden");
+
+  passwordInput.value = "";
+
+  loginMessage.textContent = "";
+
+}
+
+
+// --------------------------------------------------
+// CONNEXION
+// --------------------------------------------------
 
 loginForm.addEventListener(
   "submit",
@@ -134,6 +256,7 @@ loginForm.addEventListener(
           "Mot de passe incorrect.";
 
         return;
+
       }
 
       passwordInput.value = "";
@@ -155,5 +278,8 @@ loginForm.addEventListener(
 );
 
 
-// Vérifier automatiquement la session
+// --------------------------------------------------
+// DÉMARRAGE
+// --------------------------------------------------
+
 checkSession();
