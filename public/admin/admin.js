@@ -1,285 +1,131 @@
-const API =
-  "https://aqe-oauth.ishakaryayodonjosue.workers.dev";
+const API = 'https://aqe-oauth.ishakaryayodonjosue.workers.dev'
 
-const loginScreen =
-  document.getElementById("login-screen");
+const loginScreen = document.getElementById('login-screen')
 
-const cmsScreen =
-  document.getElementById("cms-screen");
+const cmsScreen = document.getElementById('cms-screen')
 
-const loginForm =
-  document.getElementById("login-form");
+const loginForm = document.getElementById('login-form')
 
-const passwordInput =
-  document.getElementById("password");
+const passwordInput = document.getElementById('password')
 
-const loginMessage =
-  document.getElementById("login-message");
-
-let cmsLoaded = false;
-let sessionCheckInterval = null;
-
-
-// --------------------------------------------------
-// VÉRIFIER LA SESSION
-// --------------------------------------------------
-
-async function checkSession() {
-
-  try {
-
-    const response = await fetch(
-      `${API}/check-session`,
-      {
-        method: "GET",
-        credentials: "include"
-      }
-    );
-
-    if (response.ok) {
-
-      loadCMS();
-
-    } else {
-
-      showLogin();
-
-    }
-
-  } catch (error) {
-
-    console.error(error);
-
-    showLogin();
-
-  }
-}
-
+const loginMessage = document.getElementById('login-message')
 
 // --------------------------------------------------
 // AFFICHER LA PAGE DE CONNEXION
 // --------------------------------------------------
 
 function showLogin() {
+  loginScreen.classList.remove('hidden')
 
-  loginScreen.classList.remove("hidden");
-
-  cmsScreen.classList.add("hidden");
-
-  passwordInput.value = "";
-
-  loginMessage.textContent = "";
-
+  cmsScreen.classList.add('hidden')
 }
 
-
 // --------------------------------------------------
-// CHARGER DECAP
+// AFFICHER L'ADMINISTRATION
 // --------------------------------------------------
 
-function loadCMS() {
+function showAdmin() {
+  loginScreen.classList.add('hidden')
 
-  if (cmsLoaded) {
-    return;
-  }
-
-  loginScreen.classList.add("hidden");
-
-  cmsScreen.classList.remove("hidden");
-
-  cmsLoaded = true;
-
-  const script =
-    document.createElement("script");
-
-  script.src =
-    "https://cdn.jsdelivr.net/npm/decap-cms@3.15.1/dist/decap-cms.js";
-
-  script.onload = () => {
-
-    console.log(
-      "Decap CMS chargé."
-    );
-
-    startSessionMonitoring();
-
-  };
-
-  script.onerror = () => {
-
-    cmsLoaded = false;
-
-    cmsScreen.classList.add("hidden");
-
-    loginScreen.classList.remove("hidden");
-
-    loginMessage.textContent =
-      "Impossible de charger Decap CMS.";
-
-  };
-
-  document.body.appendChild(script);
+  cmsScreen.classList.remove('hidden')
 }
 
-
 // --------------------------------------------------
-// SURVEILLER LA SESSION
-// --------------------------------------------------
-
-function startSessionMonitoring() {
-
-  if (sessionCheckInterval) {
-    clearInterval(sessionCheckInterval);
-  }
-
-  sessionCheckInterval = setInterval(
-    async () => {
-
-      try {
-
-        const response = await fetch(
-          `${API}/check-session`,
-          {
-            method: "GET",
-            credentials: "include"
-          }
-        );
-
-        if (!response.ok) {
-
-          await logoutAdmin();
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Erreur vérification session:",
-          error
-        );
-
-      }
-
-    },
-    30000
-  );
-}
-
-
-// --------------------------------------------------
-// DÉCONNEXION ADMIN
+// VÉRIFIER LA SESSION
 // --------------------------------------------------
 
-async function logoutAdmin() {
-
-  if (sessionCheckInterval) {
-
-    clearInterval(
-      sessionCheckInterval
-    );
-
-    sessionCheckInterval = null;
-
-  }
-
+async function checkSession() {
   try {
+    const response = await fetch(`${API}/check-session`, {
+      method: 'GET',
+      credentials: 'include',
+    })
 
-    await fetch(
-      `${API}/logout`,
-      {
-        method: "POST",
-        credentials: "include"
-      }
-    );
-
+    if (response.ok) {
+      showAdmin()
+    } else {
+      showLogin()
+    }
   } catch (error) {
+    console.error('Erreur vérification session :', error)
 
-    console.error(
-      "Erreur déconnexion:",
-      error
-    );
-
+    showLogin()
   }
-
-  cmsScreen.classList.add("hidden");
-
-  loginScreen.classList.remove("hidden");
-
-  passwordInput.value = "";
-
-  loginMessage.textContent = "";
-
 }
-
 
 // --------------------------------------------------
 // CONNEXION
 // --------------------------------------------------
 
-loginForm.addEventListener(
-  "submit",
-  async (event) => {
+loginForm.addEventListener('submit', async (event) => {
+  event.preventDefault()
 
-    event.preventDefault();
+  loginMessage.textContent = 'Connexion...'
 
-    loginMessage.textContent =
-      "Connexion...";
+  try {
+    const response = await fetch(`${API}/login`, {
+      method: 'POST',
 
-    try {
+      credentials: 'include',
 
-      const response = await fetch(
-        `${API}/login`,
-        {
-          method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
 
-          credentials: "include",
+      body: JSON.stringify({
+        password: passwordInput.value,
+      }),
+    })
 
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
+    const data = await response.json()
 
-          body: JSON.stringify({
-            password:
-              passwordInput.value
-          })
-        }
-      );
+    if (!response.ok) {
+      loginMessage.textContent = data.error || 'Mot de passe incorrect.'
 
-      const data =
-        await response.json();
-
-      if (!response.ok) {
-
-        loginMessage.textContent =
-          data.error ||
-          "Mot de passe incorrect.";
-
-        return;
-
-      }
-
-      passwordInput.value = "";
-
-      loginMessage.textContent = "";
-
-      loadCMS();
-
-    } catch (error) {
-
-      console.error(error);
-
-      loginMessage.textContent =
-        "Impossible de contacter le serveur.";
-
+      return
     }
 
+    passwordInput.value = ''
+
+    loginMessage.textContent = ''
+
+    showAdmin()
+  } catch (error) {
+    console.error(error)
+
+    loginMessage.textContent = 'Impossible de contacter le serveur.'
   }
-);
-
+})
 
 // --------------------------------------------------
-// DÉMARRAGE
+// DÉCONNEXION
 // --------------------------------------------------
 
-checkSession();
+const logoutButton = document.getElementById('logout-button')
+
+if (logoutButton) {
+  logoutButton.addEventListener('click', async () => {
+    try {
+      await fetch(`${API}/logout`, {
+        method: 'POST',
+        credentials: 'include',
+      })
+    } catch (error) {
+      console.error('Erreur déconnexion :', error)
+    }
+
+    // Toujours revenir à la page mot de passe
+    showLogin()
+
+    // Vider le champ
+    passwordInput.value = ''
+
+    // Effacer le message
+    loginMessage.textContent = ''
+  })
+}
+// --------------------------------------------------
+// INITIALISATION
+// --------------------------------------------------
+
+checkSession()

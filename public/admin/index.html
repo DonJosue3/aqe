@@ -1,87 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <meta name="robots" content="noindex" />
 
-  <meta name="robots" content="noindex">
+    <title>African Queen Empire — Administration</title>
 
-  <title>African Queen Empire — Administration</title>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
 
-  <link
-    rel="stylesheet"
-    href="./admin.css"
-  >
-</head>
+  <body>
+    <!-- Écran de connexion -->
 
-<body>
+    <section id="login-screen">
+      <div class="login-box">
+        <img src="/aqe/images/aqelogo.png" alt="African Queen Empire" class="logo" />
 
-  <!-- Écran de connexion -->
+        <h1>Administration</h1>
 
-  <section id="login-screen">
+        <p>Espace réservé au propriétaire</p>
 
-    <div class="login-box">
+        <form id="login-form">
+          <label for="password"> Mot de passe </label>
 
-      <img
-        src="/aqe/images/aqelogo.png"
-        alt="African Queen Empire"
-        class="logo"
-      >
+          <input id="password" type="password" autocomplete="current-password" required />
 
-      <h1>Administration</h1>
+          <button type="submit">Se connecter</button>
+        </form>
 
-      <p>
-        Espace réservé au propriétaire
-      </p>
+        <div id="login-message" class="message"></div>
+      </div>
+    </section>
 
-      <form id="login-form">
+    <!-- ADMINISTRATION -->
 
-        <label for="password">
-          Mot de passe
-        </label>
+    <section id="cms-screen" class="hidden">
+      <div class="admin-panel">
+        <h1>Administration</h1>
 
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          required
-        >
+        <p>Bienvenue dans l'espace d'administration African Queen Empire.</p>
 
-        <button type="submit">
-          Se connecter
-        </button>
-
-      </form>
-
-      <div
-        id="login-message"
-        class="message"
-      ></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- Decap CMS -->
-
-  <section
-    id="cms-screen"
-    class="hidden"
-  >
-
-    <div id="nc-root"></div>
-
-  </section>
-
-
-  <script src="./admin.js"></script>
-
-</body>
-
+        <button id="logout-button">Se déconnecter</button>
+      </div>
+    </section>
+    <script src="./admin.js"></script>
+  </body>
 </html>
