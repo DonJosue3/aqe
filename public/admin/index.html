@@ -1,51 +1,356 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="robots" content="noindex" />
+  <meta name="robots" content="noindex" />
 
-    <title>African Queen Empire — Administration</title>
+  <title>African Queen Empire — Administration</title>
 
-    <link rel="stylesheet" href="./admin.css" />
-  </head>
+  <link rel="stylesheet" href="./admin.css" />
+</head>
 
-  <body>
-    <!-- Écran de connexion -->
+<body>
 
-    <section id="login-screen">
-      <div class="login-box">
-        <img src="/aqe/images/aqelogo.png" alt="African Queen Empire" class="logo" />
+  <!-- =========================
+       CONNEXION
+  ========================== -->
 
-        <h1>Administration</h1>
+  <section id="login-screen">
 
-        <p>Espace réservé au propriétaire</p>
+    <div class="login-box">
 
-        <form id="login-form">
-          <label for="password"> Mot de passe </label>
+      <img
+        src="/aqe/images/aqelogo.png"
+        alt="African Queen Empire"
+        class="logo"
+      />
 
-          <input id="password" type="password" autocomplete="current-password" required />
+      <h1>Administration</h1>
 
-          <button type="submit">Se connecter</button>
-        </form>
+      <p>Espace réservé au propriétaire</p>
 
-        <div id="login-message" class="message"></div>
+      <form id="login-form">
+
+        <label for="password">
+          Mot de passe
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          required
+        />
+
+        <button type="submit">
+          Se connecter
+        </button>
+
+      </form>
+
+      <div id="login-message" class="message"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ADMINISTRATION
+  ========================== -->
+
+  <section id="cms-screen" class="hidden">
+
+    <!-- HEADER ADMIN -->
+
+    <header class="admin-header">
+
+      <div>
+        <h1>African Queen Empire</h1>
+        <span>Administration</span>
       </div>
-    </section>
 
-    <!-- ADMINISTRATION -->
+      <button
+        id="logout-button"
+        class="logout-button"
+      >
+        Se déconnecter
+      </button>
 
-    <section id="cms-screen" class="hidden">
-      <div class="admin-panel">
-        <h1>Administration</h1>
+    </header>
 
-        <p>Bienvenue dans l'espace d'administration African Queen Empire.</p>
 
-        <button id="logout-button">Se déconnecter</button>
+    <!-- CONTENU -->
+
+    <main class="admin-main">
+
+      <div class="admin-title">
+
+        <div>
+          <h2>Gestion de la boutique</h2>
+
+          <p>
+            Gérez les produits affichés sur votre site.
+          </p>
+        </div>
+
+        <button
+          id="add-product-button"
+          class="primary-button"
+        >
+          + Ajouter un produit
+        </button>
+
       </div>
-    </section>
-    <script src="./admin.js"></script>
-  </body>
+
+
+      <!-- MESSAGE CMS -->
+
+      <div
+        id="cms-message"
+        class="cms-message"
+      ></div>
+
+
+      <!-- LISTE DES PRODUITS -->
+
+      <section id="products-container">
+
+        <div
+          id="products-loading"
+          class="loading"
+        >
+          Chargement des produits...
+        </div>
+
+        <div
+          id="products-list"
+          class="products-list"
+        ></div>
+
+      </section>
+
+
+      <!-- =========================
+           FORMULAIRE PRODUIT
+      ========================== -->
+
+      <section
+        id="product-form-container"
+        class="product-form-container hidden"
+      >
+
+        <div class="product-form-card">
+
+          <div class="form-header">
+
+            <div>
+              <h2 id="product-form-title">
+                Ajouter un produit
+              </h2>
+
+              <p>
+                Remplissez les informations du produit.
+              </p>
+            </div>
+
+            <button
+              id="cancel-product-button"
+              class="close-button"
+              type="button"
+            >
+              ×
+            </button>
+
+          </div>
+
+
+          <form id="product-form">
+
+            <!-- ID -->
+
+            <input
+              id="product-id"
+              type="hidden"
+            />
+
+
+            <div class="form-grid">
+
+              <!-- NOM -->
+
+              <div class="form-group">
+
+                <label for="product-name">
+                  Nom du produit
+                </label>
+
+                <input
+                  id="product-name"
+                  type="text"
+                  required
+                  placeholder="Ex : Robe Kente"
+                />
+
+              </div>
+
+
+              <!-- CATÉGORIE -->
+
+              <div class="form-group">
+
+                <label for="product-category">
+                  Catégorie
+                </label>
+
+                <input
+                  id="product-category"
+                  type="text"
+                  required
+                  placeholder="Ex : mode"
+                />
+
+              </div>
+
+
+              <!-- LABEL -->
+
+              <div class="form-group">
+
+                <label for="product-label">
+                  Label
+                </label>
+
+                <input
+                  id="product-label"
+                  type="text"
+                  required
+                  placeholder="Ex : Mode"
+                />
+
+              </div>
+
+
+              <!-- PRIX -->
+
+              <div class="form-group">
+
+                <label for="product-price">
+                  Prix
+                </label>
+
+                <input
+                  id="product-price"
+                  type="text"
+                  required
+                  placeholder="Ex : 35 000 BIF"
+                />
+
+              </div>
+
+
+              <!-- IMAGE -->
+
+              <div class="form-group form-full">
+
+                <label for="product-image">
+                  Chemin de l'image
+                </label>
+
+                <input
+                  id="product-image"
+                  type="text"
+                  required
+                  placeholder="/images/products/produit.jpg"
+                />
+
+                <small>
+                  Exemple :
+                  /images/products/robe-kente.jpg
+                </small>
+
+              </div>
+
+
+              <!-- SIZE -->
+
+              <div class="form-group">
+
+                <label for="product-size">
+                  Taille d'affichage
+                </label>
+
+                <select id="product-size">
+
+                  <option value="short">
+                    Short
+                  </option>
+
+                  <option value="tall">
+                    Tall
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <!-- DESCRIPTION -->
+
+              <div class="form-group form-full">
+
+                <label for="product-description">
+                  Description
+                </label>
+
+                <textarea
+                  id="product-description"
+                  rows="5"
+                  placeholder="Description du produit..."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+
+            <!-- BOUTONS -->
+
+            <div class="form-actions">
+
+              <button
+                type="button"
+                id="cancel-product-button-bottom"
+                class="secondary-button"
+              >
+                Annuler
+              </button>
+
+              <button
+                type="submit"
+                id="save-product-button"
+                class="primary-button"
+              >
+                Enregistrer
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </section>
+
+
+  <script src="./admin.js"></script>
+
+</body>
 </html>
