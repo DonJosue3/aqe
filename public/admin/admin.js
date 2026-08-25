@@ -2,9 +2,9 @@ const API =
   'https://aqe-oauth.ishakaryayodonjosue.workers.dev'
 
 
-// =========================================
-// ELEMENTS
-// =========================================
+// ==================================================
+// ÉLÉMENTS PRINCIPAUX
+// ==================================================
 
 const loginScreen =
   document.getElementById('login-screen')
@@ -24,74 +24,56 @@ const loginMessage =
 const logoutButton =
   document.getElementById('logout-button')
 
-const productsList =
-  document.getElementById('products-list')
 
-const productsLoading =
-  document.getElementById('products-loading')
+// ==================================================
+// NAVIGATION ADMIN
+// ==================================================
 
-const cmsMessage =
-  document.getElementById('cms-message')
+const showProductsButton =
+  document.getElementById('show-products-button')
 
-const addProductButton =
-  document.getElementById('add-product-button')
+const showMenuButton =
+  document.getElementById('show-menu-button')
 
-const productFormContainer =
-  document.getElementById('product-form-container')
+const productsSection =
+  document.getElementById('products-section')
 
-const productForm =
-  document.getElementById('product-form')
-
-const productFormTitle =
-  document.getElementById('product-form-title')
-
-const cancelProductButton =
-  document.getElementById('cancel-product-button')
-
-const cancelProductButtonBottom =
-  document.getElementById(
-    'cancel-product-button-bottom'
-  )
-
-const productId =
-  document.getElementById('product-id')
-
-const productName =
-  document.getElementById('product-name')
-
-const productCategory =
-  document.getElementById('product-category')
-
-const productLabel =
-  document.getElementById('product-label')
-
-const productPrice =
-  document.getElementById('product-price')
-
-const productImage =
-  document.getElementById('product-image')
-
-const productSize =
-  document.getElementById('product-size')
-
-const productDescription =
-  document.getElementById(
-    'product-description'
-  )
+const menuSection =
+  document.getElementById('menu-section')
 
 
-// =========================================
-// VARIABLES
-// =========================================
+// ==================================================
+// MENU
+// ==================================================
 
-let products = []
+const menuEditor =
+  document.getElementById('menu-editor')
 
-let productsSha = null
+const menuMessage =
+  document.getElementById('menu-message')
+
+const saveMenuButton =
+  document.getElementById('save-menu-button')
+
+const menuCategoryButtons =
+  document.querySelectorAll('.menu-category-button')
 
 
-// =========================================
+// ==================================================
+// VARIABLES MENU
+// ==================================================
+
+let menuData = null
+
+let menuSha = null
+
+let currentMenuCategory =
+  'platsDuJour'
+
+
+// ==================================================
 // AFFICHER LOGIN
-// =========================================
+// ==================================================
 
 function showLogin() {
 
@@ -102,9 +84,9 @@ function showLogin() {
 }
 
 
-// =========================================
+// ==================================================
 // AFFICHER ADMIN
-// =========================================
+// ==================================================
 
 function showAdmin() {
 
@@ -115,54 +97,29 @@ function showAdmin() {
 }
 
 
-// =========================================
-// MESSAGE CMS
-// =========================================
-
-function showCmsMessage(message) {
-
-  cmsMessage.textContent = message
-
-}
-
-
-function clearCmsMessage() {
-
-  cmsMessage.textContent = ''
-
-}
-
-
-// =========================================
-// VERIFIER SESSION
-// =========================================
+// ==================================================
+// VÉRIFICATION SESSION
+// ==================================================
 
 async function checkSession() {
 
   try {
 
     const response =
-      await fetch(
-        `${API}/check-session`,
-        {
-          method: 'GET',
-          credentials: 'include',
-        }
-      )
+      await fetch(`${API}/check-session`, {
+
+        method: 'GET',
+
+        credentials: 'include'
+
+      })
 
 
-    const data =
-      await response.json()
-
-
-    if (
-      response.ok &&
-      data.authenticated === true
-    ) {
+    if (response.ok) {
 
       showAdmin()
 
-      await loadProducts()
+      await loadMenu()
 
     } else {
 
@@ -184,16 +141,15 @@ async function checkSession() {
 }
 
 
-// =========================================
+// ==================================================
 // CONNEXION
-// =========================================
+// ==================================================
 
 loginForm.addEventListener(
   'submit',
   async (event) => {
 
     event.preventDefault()
-
 
     loginMessage.textContent =
       'Connexion...'
@@ -202,24 +158,25 @@ loginForm.addEventListener(
     try {
 
       const response =
-        await fetch(
-          `${API}/login`,
-          {
-            method: 'POST',
+        await fetch(`${API}/login`, {
 
-            credentials: 'include',
+          method: 'POST',
 
-            headers: {
-              'Content-Type':
-                'application/json',
-            },
+          credentials: 'include',
 
-            body: JSON.stringify({
-              password:
-                passwordInput.value,
-            }),
-          }
-        )
+          headers: {
+            'Content-Type':
+              'application/json'
+          },
+
+          body: JSON.stringify({
+
+            password:
+              passwordInput.value
+
+          })
+
+        })
 
 
       const data =
@@ -241,11 +198,9 @@ loginForm.addEventListener(
 
       loginMessage.textContent = ''
 
-
       showAdmin()
 
-
-      await loadProducts()
+      await loadMenu()
 
     } catch (error) {
 
@@ -260,9 +215,9 @@ loginForm.addEventListener(
 )
 
 
-// =========================================
-// DECONNEXION
-// =========================================
+// ==================================================
+// DÉCONNEXION
+// ==================================================
 
 if (logoutButton) {
 
@@ -272,13 +227,13 @@ if (logoutButton) {
 
       try {
 
-        await fetch(
-          `${API}/logout`,
-          {
-            method: 'POST',
-            credentials: 'include',
-          }
-        )
+        await fetch(`${API}/logout`, {
+
+          method: 'POST',
+
+          credentials: 'include'
+
+        })
 
       } catch (error) {
 
@@ -292,16 +247,9 @@ if (logoutButton) {
 
       showLogin()
 
-
       passwordInput.value = ''
 
       loginMessage.textContent = ''
-
-      products = []
-
-      productsSha = null
-
-      productsList.innerHTML = ''
 
     }
   )
@@ -309,31 +257,89 @@ if (logoutButton) {
 }
 
 
-// =========================================
-// CHARGER PRODUCTS.JSON
-// =========================================
+// ==================================================
+// NAVIGATION PRODUITS
+// ==================================================
 
-async function loadProducts() {
+showProductsButton.addEventListener(
+  'click',
+  () => {
 
-  productsLoading.classList.remove(
-    'hidden'
-  )
+    productsSection.classList.remove(
+      'hidden'
+    )
 
-  productsList.innerHTML = ''
+    menuSection.classList.add(
+      'hidden'
+    )
 
-  clearCmsMessage()
+    showProductsButton.classList.add(
+      'active'
+    )
+
+    showMenuButton.classList.remove(
+      'active'
+    )
+
+  }
+)
+
+
+// ==================================================
+// NAVIGATION MENU
+// ==================================================
+
+showMenuButton.addEventListener(
+  'click',
+  async () => {
+
+    productsSection.classList.add(
+      'hidden'
+    )
+
+    menuSection.classList.remove(
+      'hidden'
+    )
+
+    showProductsButton.classList.remove(
+      'active'
+    )
+
+    showMenuButton.classList.add(
+      'active'
+    )
+
+
+    if (!menuData) {
+
+      await loadMenu()
+
+    }
+
+  }
+)
+
+
+// ==================================================
+// CHARGER MENU
+// ==================================================
+
+async function loadMenu() {
+
+  menuEditor.innerHTML =
+    '<p class="loading">Chargement du menu...</p>'
 
 
   try {
 
     const response =
-      await fetch(
-        `${API}/api/products`,
-        {
-          method: 'GET',
-          credentials: 'include',
-        }
-      )
+      await fetch(`${API}/api/menu`, {
+
+        method: 'GET',
+
+        credentials: 'include'
+
+      })
 
 
     const data =
@@ -342,78 +348,60 @@ async function loadProducts() {
 
     if (!response.ok) {
 
-      if (response.status === 401) {
+      menuEditor.innerHTML =
+        `<p class="error">
+          ${data.error || 'Impossible de charger le menu.'}
+        </p>`
 
-        showLogin()
-
-        return
-
-      }
-
-      throw new Error(
-        data.error ||
-        'Erreur lors du chargement.'
-      )
+      return
 
     }
 
 
-    productsSha = data.sha
+    menuSha = data.sha
 
 
     const decodedContent =
-      decodeBase64(data.content)
+      decodeBase64UTF8(data.content)
 
 
-    const json =
+    menuData =
       JSON.parse(decodedContent)
 
 
-    products =
-      Array.isArray(json.products)
-        ? json.products
-        : []
-
-
-    renderProducts()
+    renderMenuCategory()
 
   } catch (error) {
 
-    console.error(error)
-
-    showCmsMessage(
-      'Impossible de charger les produits.'
+    console.error(
+      'Erreur chargement menu :',
+      error
     )
 
-  } finally {
-
-    productsLoading.classList.add(
-      'hidden'
-    )
+    menuEditor.innerHTML =
+      `<p class="error">
+        Impossible de charger le menu.
+      </p>`
 
   }
 
 }
 
 
-// =========================================
-// BASE64 -> TEXTE
-// =========================================
+// ==================================================
+// DÉCODER BASE64 UTF-8
+// ==================================================
 
-function decodeBase64(base64) {
+function decodeBase64UTF8(base64) {
 
   const binary =
-    atob(
-      base64.replace(/\s/g, '')
-    )
-
+    atob(base64)
 
   const bytes =
     Uint8Array.from(
       binary,
-      character => character.charCodeAt(0)
+      char => char.charCodeAt(0)
     )
-
 
   return new TextDecoder(
     'utf-8'
@@ -422,27 +410,31 @@ function decodeBase64(base64) {
 }
 
 
-// =========================================
-// TEXTE -> BASE64
-// =========================================
+// ==================================================
+// ENCODER UTF-8 EN BASE64
+// ==================================================
 
-function encodeBase64(text) {
+function encodeBase64UTF8(text) {
 
   const bytes =
     new TextEncoder().encode(text)
 
-
   let binary = ''
+
+  const chunkSize = 0x8000
 
 
   for (
     let i = 0;
     i < bytes.length;
-    i++
+    i += chunkSize
   ) {
 
     binary += String.fromCharCode(
-      bytes[i]
+      ...bytes.subarray(
+        i,
+        i + chunkSize
+      )
     )
 
   }
@@ -453,491 +445,798 @@ function encodeBase64(text) {
 }
 
 
-// =========================================
-// AFFICHER PRODUITS
-// =========================================
+// ==================================================
+// CHANGEMENT CATÉGORIE
+// ==================================================
 
-function renderProducts() {
+menuCategoryButtons.forEach(
+  button => {
 
-  productsList.innerHTML = ''
+    button.addEventListener(
+      'click',
+      () => {
+
+        currentMenuCategory =
+          button.dataset.category
 
 
-  if (products.length === 0) {
+        menuCategoryButtons.forEach(
+          item => {
 
-    productsList.innerHTML = `
-      <div class="empty-products">
-        Aucun produit disponible.
-      </div>
-    `
+            item.classList.remove(
+              'active'
+            )
+
+          }
+        )
+
+
+        button.classList.add(
+          'active'
+        )
+
+
+        renderMenuCategory()
+
+      }
+    )
+
+  }
+)
+
+
+// ==================================================
+// RENDRE UNE CATÉGORIE
+// ==================================================
+
+function renderMenuCategory() {
+
+  if (!menuData) {
 
     return
 
   }
 
 
-  products.forEach(
-    product => {
-
-      const card =
-        document.createElement('article')
+  const category =
+    menuData[currentMenuCategory]
 
 
-      card.className =
-        'product-card'
+  if (!category) {
+
+    menuEditor.innerHTML =
+      '<p class="error">Catégorie introuvable.</p>'
+
+    return
+
+  }
 
 
-      const image =
-        product.image
-          ? `
-            <img
-              class="product-image"
-              src="${escapeAttribute(
-                product.image
-              )}"
-              alt="${escapeAttribute(
-                product.name
-              )}"
-              onerror="
-                this.style.display='none';
-                this.nextElementSibling.style.display='block';
-              "
-            >
-            <div
-              class="product-no-image"
-              style="display:none;"
-            >
-              Image introuvable
-            </div>
-          `
-          : `
-            <div class="product-no-image">
-              Aucune image
-            </div>
-          `
+  if (
+    currentMenuCategory ===
+    'platsDuJour'
+  ) {
+
+    renderPlatsDuJour(category)
+
+    return
+
+  }
 
 
-      card.innerHTML = `
+  renderStandardCategory(category)
 
-        <div class="product-image-container">
-          ${image}
-        </div>
-
-        <div class="product-content">
-
-          <div class="product-category">
-            ${escapeHtml(
-              product.label ||
-              product.category ||
-              ''
-            )}
-          </div>
-
-          <h3 class="product-name">
-            ${escapeHtml(
-              product.name || ''
-            )}
-          </h3>
-
-          <div class="product-price">
-            ${escapeHtml(
-              product.price || ''
-            )}
-          </div>
-
-          <div class="product-description">
-            ${escapeHtml(
-              product.description || ''
-            )}
-          </div>
-
-          <div class="product-actions">
-
-            <button
-              class="edit-button"
-              data-action="edit"
-              data-id="${product.id}"
-            >
-              Modifier
-            </button>
-
-            <button
-              class="delete-button"
-              data-action="delete"
-              data-id="${product.id}"
-            >
-              Supprimer
-            </button>
-
-          </div>
-
-        </div>
-
-      `
+}
 
 
-      productsList.appendChild(card)
+// ==================================================
+// PLATS DU JOUR
+// ==================================================
+
+function renderPlatsDuJour(category) {
+
+  menuEditor.innerHTML = ''
+
+
+  const title =
+    document.createElement('input')
+
+  title.className =
+    'category-title-input'
+
+  title.value =
+    category.title || ''
+
+
+  title.addEventListener(
+    'input',
+    () => {
+
+      category.title =
+        title.value
 
     }
+  )
+
+
+  const titleLabel =
+    document.createElement('label')
+
+  titleLabel.textContent =
+    'Titre de la catégorie'
+
+
+  menuEditor.appendChild(
+    titleLabel
+  )
+
+  menuEditor.appendChild(
+    title
+  )
+
+
+  const columns =
+    document.createElement('div')
+
+  columns.className =
+    'day-columns'
+
+
+  columns.appendChild(
+    createDayColumn(
+      category,
+      'column1',
+      'Colonne 1'
+    )
+  )
+
+
+  columns.appendChild(
+    createDayColumn(
+      category,
+      'column2',
+      'Colonne 2'
+    )
+  )
+
+
+  menuEditor.appendChild(
+    columns
   )
 
 }
 
 
-// =========================================
-// SECURITE HTML
-// =========================================
+// ==================================================
+// COLONNE PLATS DU JOUR
+// ==================================================
 
-function escapeHtml(value) {
-
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;')
-
-}
-
-
-function escapeAttribute(value) {
-
-  return escapeHtml(value)
-
-}
-
-
-// =========================================
-// CLICS PRODUITS
-// =========================================
-
-productsList.addEventListener(
-  'click',
-  event => {
-
-    const button =
-      event.target.closest('button')
-
-
-    if (!button) {
-      return
-    }
-
-
-    const id =
-      Number(button.dataset.id)
-
-
-    if (
-      button.dataset.action === 'edit'
-    ) {
-
-      editProduct(id)
-
-    }
-
-
-    if (
-      button.dataset.action === 'delete'
-    ) {
-
-      deleteProduct(id)
-
-    }
-
-  }
-)
-
-
-// =========================================
-// OUVRIR AJOUT
-// =========================================
-
-addProductButton.addEventListener(
-  'click',
-  () => {
-
-    openProductForm()
-
-  }
-)
-
-
-// =========================================
-// OUVRIR FORMULAIRE
-// =========================================
-
-function openProductForm(
-  product = null
+function createDayColumn(
+  category,
+  columnName,
+  title
 ) {
 
-  productForm.reset()
+  const wrapper =
+    document.createElement('div')
+
+  wrapper.className =
+    'menu-column'
 
 
-  if (product) {
+  const heading =
+    document.createElement('h3')
 
-    productFormTitle.textContent =
-      'Modifier le produit'
-
-
-    productId.value =
-      product.id
+  heading.textContent =
+    title
 
 
-    productName.value =
-      product.name || ''
+  wrapper.appendChild(
+    heading
+  )
 
 
-    productCategory.value =
-      product.category || ''
+  const list =
+    document.createElement('div')
+
+  list.className =
+    'menu-items'
 
 
-    productLabel.value =
-      product.label || ''
+  function renderItems() {
+
+    list.innerHTML = ''
 
 
-    productPrice.value =
-      product.price || ''
+    category[columnName].forEach(
+      (item, index) => {
 
+        list.appendChild(
+          createMenuItem(
+            item,
+            () => {
 
-    productImage.value =
-      product.image || ''
+              category[columnName]
+                .splice(index, 1)
 
+              renderItems()
 
-    productSize.value =
-      product.size || 'short'
+            },
+            true
+          )
+        )
 
-
-    productDescription.value =
-      product.description || ''
-
-  } else {
-
-    productFormTitle.textContent =
-      'Ajouter un produit'
-
-
-    productId.value = ''
-
-    productSize.value = 'short'
+      }
+    )
 
   }
 
 
-  productFormContainer.classList.remove(
-    'hidden'
-  )
+  renderItems()
 
 
-  productName.focus()
+  const addButton =
+    document.createElement('button')
 
-}
+  addButton.type =
+    'button'
 
+  addButton.className =
+    'add-button'
 
-// =========================================
-// FERMER FORMULAIRE
-// =========================================
-
-function closeProductForm() {
-
-  productFormContainer.classList.add(
-    'hidden'
-  )
-
-  productForm.reset()
-
-  productId.value = ''
-
-}
+  addButton.textContent =
+    '+ Ajouter'
 
 
-cancelProductButton.addEventListener(
-  'click',
-  closeProductForm
-)
+  addButton.addEventListener(
+    'click',
+    () => {
+
+      category[columnName].push({
+
+        type: 'item',
+
+        name: '',
+
+        price: ''
+
+      })
 
 
-cancelProductButtonBottom.addEventListener(
-  'click',
-  closeProductForm
-)
-
-
-// =========================================
-// MODIFIER PRODUIT
-// =========================================
-
-function editProduct(id) {
-
-  const product =
-    products.find(
-      item => Number(item.id) === id
-    )
-
-
-  if (!product) {
-
-    showCmsMessage(
-      'Produit introuvable.'
-    )
-
-    return
-
-  }
-
-
-  openProductForm(product)
-
-}
-
-
-// =========================================
-// AJOUT / MODIFICATION
-// =========================================
-
-productForm.addEventListener(
-  'submit',
-  async event => {
-
-    event.preventDefault()
-
-
-    const idValue =
-      productId.value
-
-
-    const productData = {
-
-      name:
-        productName.value.trim(),
-
-      category:
-        productCategory.value.trim(),
-
-      label:
-        productLabel.value.trim(),
-
-      price:
-        productPrice.value.trim(),
-
-      description:
-        productDescription.value.trim(),
-
-      image:
-        productImage.value.trim(),
-
-      size:
-        productSize.value
+      renderItems()
 
     }
+  )
 
 
-    if (
-      !productData.name ||
-      !productData.category ||
-      !productData.label ||
-      !productData.price ||
-      !productData.image
-    ) {
+  wrapper.appendChild(list)
 
-      alert(
-        'Veuillez remplir tous les champs obligatoires.'
+  wrapper.appendChild(
+    addButton
+  )
+
+
+  return wrapper
+
+}
+
+
+// ==================================================
+// CATÉGORIES NORMALES
+// ==================================================
+
+function renderStandardCategory(category) {
+
+  menuEditor.innerHTML = ''
+
+
+  const titleLabel =
+    document.createElement('label')
+
+  titleLabel.textContent =
+    'Titre de la catégorie'
+
+
+  const titleInput =
+    document.createElement('input')
+
+  titleInput.className =
+    'category-title-input'
+
+  titleInput.value =
+    category.title || ''
+
+
+  titleInput.addEventListener(
+    'input',
+    () => {
+
+      category.title =
+        titleInput.value
+
+    }
+  )
+
+
+  menuEditor.appendChild(
+    titleLabel
+  )
+
+  menuEditor.appendChild(
+    titleInput
+  )
+
+
+  const list =
+    document.createElement('div')
+
+  list.className =
+    'standard-menu-items'
+
+
+  function renderItems() {
+
+    list.innerHTML = ''
+
+
+    category.items.forEach(
+      (item, index) => {
+
+        list.appendChild(
+          createMenuItem(
+            item,
+            () => {
+
+              category.items.splice(
+                index,
+                1
+              )
+
+              renderItems()
+
+            },
+            false
+          )
+        )
+
+      }
+    )
+
+  }
+
+
+  renderItems()
+
+
+  const addButton =
+    document.createElement('button')
+
+  addButton.type =
+    'button'
+
+  addButton.className =
+    'add-button'
+
+  addButton.textContent =
+    '+ Ajouter un élément'
+
+
+  addButton.addEventListener(
+    'click',
+    () => {
+
+      const newItem = {
+
+        name: '',
+
+        price: ''
+
+      }
+
+
+      // Les catégories qui utilisent
+      // des descriptions peuvent en recevoir une.
+
+      if (
+        currentMenuCategory ===
+          'petitDejeuner' ||
+        currentMenuCategory ===
+          'pizza'
+      ) {
+
+        newItem.description = ''
+
+      }
+
+
+      category.items.push(
+        newItem
       )
+
+
+      renderItems()
+
+    }
+  )
+
+
+  menuEditor.appendChild(list)
+
+  menuEditor.appendChild(
+    addButton
+  )
+
+}
+
+
+// ==================================================
+// CRÉER UN ÉLÉMENT MENU
+// ==================================================
+
+function createMenuItem(
+  item,
+  deleteCallback,
+  allowType
+) {
+
+  const card =
+    document.createElement('div')
+
+  card.className =
+    'menu-item-card'
+
+
+  // TYPE
+
+  if (allowType) {
+
+    const typeLabel =
+      document.createElement('label')
+
+    typeLabel.textContent =
+      'Type'
+
+
+    const typeSelect =
+      document.createElement('select')
+
+
+    const itemOption =
+      document.createElement('option')
+
+    itemOption.value =
+      'item'
+
+    itemOption.textContent =
+      'Élément'
+
+
+    const priceOption =
+      document.createElement('option')
+
+    priceOption.value =
+      'price'
+
+    priceOption.textContent =
+      'Prix'
+
+
+    typeSelect.appendChild(
+      itemOption
+    )
+
+    typeSelect.appendChild(
+      priceOption
+    )
+
+
+    typeSelect.value =
+      item.type || 'item'
+
+
+    typeSelect.addEventListener(
+      'change',
+      () => {
+
+        item.type =
+          typeSelect.value
+
+      }
+    )
+
+
+    card.appendChild(
+      typeLabel
+    )
+
+    card.appendChild(
+      typeSelect
+    )
+
+  }
+
+
+  // NOM
+
+  const nameLabel =
+    document.createElement('label')
+
+  nameLabel.textContent =
+    'Nom'
+
+
+  const nameInput =
+    document.createElement('input')
+
+  nameInput.type =
+    'text'
+
+  nameInput.value =
+    item.name || ''
+
+
+  nameInput.addEventListener(
+    'input',
+    () => {
+
+      item.name =
+        nameInput.value
+
+    }
+  )
+
+
+  card.appendChild(
+    nameLabel
+  )
+
+  card.appendChild(
+    nameInput
+  )
+
+
+  // PRIX
+
+  const priceLabel =
+    document.createElement('label')
+
+  priceLabel.textContent =
+    'Prix'
+
+
+  const priceInput =
+    document.createElement('input')
+
+  priceInput.type =
+    'text'
+
+  priceInput.value =
+    item.price || ''
+
+
+  priceInput.addEventListener(
+    'input',
+    () => {
+
+      item.price =
+        priceInput.value
+
+    }
+  )
+
+
+  card.appendChild(
+    priceLabel
+  )
+
+  card.appendChild(
+    priceInput
+  )
+
+
+  // DESCRIPTION
+
+  if (
+    Object.prototype.hasOwnProperty.call(
+      item,
+      'description'
+    )
+  ) {
+
+    const descriptionLabel =
+      document.createElement('label')
+
+    descriptionLabel.textContent =
+      'Description'
+
+
+    const descriptionInput =
+      document.createElement('textarea')
+
+    descriptionInput.value =
+      item.description || ''
+
+
+    descriptionInput.addEventListener(
+      'input',
+      () => {
+
+        item.description =
+          descriptionInput.value
+
+      }
+    )
+
+
+    card.appendChild(
+      descriptionLabel
+    )
+
+    card.appendChild(
+      descriptionInput
+    )
+
+  }
+
+
+  // SUPPRIMER
+
+  const deleteButton =
+    document.createElement('button')
+
+  deleteButton.type =
+    'button'
+
+  deleteButton.className =
+    'delete-button'
+
+  deleteButton.textContent =
+    'Supprimer'
+
+
+  deleteButton.addEventListener(
+    'click',
+    () => {
+
+      if (
+        confirm(
+          'Supprimer cet élément ?'
+        )
+      ) {
+
+        deleteCallback()
+
+      }
+
+    }
+  )
+
+
+  card.appendChild(
+    deleteButton
+  )
+
+
+  return card
+
+}
+
+
+// ==================================================
+// ENREGISTRER MENU
+// ==================================================
+
+saveMenuButton.addEventListener(
+  'click',
+  async () => {
+
+    if (!menuData) {
 
       return
 
     }
 
 
-    const saveButton =
-      document.getElementById(
-        'save-product-button'
-      )
+    if (!menuSha) {
+
+      menuMessage.textContent =
+        'SHA du fichier introuvable.'
+
+      return
+
+    }
 
 
-    saveButton.disabled = true
+    saveMenuButton.disabled =
+      true
 
-    saveButton.textContent =
+
+    menuMessage.textContent =
       'Enregistrement...'
 
 
     try {
 
-      if (idValue) {
-
-        const id =
-          Number(idValue)
-
-
-        const index =
-          products.findIndex(
-            item =>
-              Number(item.id) === id
-          )
+      const json =
+        JSON.stringify(
+          menuData,
+          null,
+          2
+        )
 
 
-        if (index === -1) {
-
-          throw new Error(
-            'Produit introuvable.'
-          )
-
-        }
+      const encoded =
+        encodeBase64UTF8(json)
 
 
-        products[index] = {
+      const response =
+        await fetch(`${API}/api/menu`, {
 
-          ...products[index],
+          method: 'PUT',
 
-          ...productData,
+          credentials: 'include',
 
-          id: id
+          headers: {
 
-        }
+            'Content-Type':
+              'application/json'
 
-      } else {
+          },
 
-        const newId =
-          getNextProductId()
+          body: JSON.stringify({
 
+            content: encoded,
 
-        products.push({
+            sha: menuSha
 
-          id: newId,
-
-          ...productData
+          })
 
         })
+
+
+      const data =
+        await response.json()
+
+
+      if (!response.ok) {
+
+        menuMessage.textContent =
+          data.error ||
+          'Erreur lors de l'enregistrement.'
+
+        return
 
       }
 
 
-      await saveProducts()
+      // Le SHA change après chaque
+      // modification GitHub.
+
+      if (data.sha) {
+
+        menuSha =
+          data.sha
+
+      }
 
 
-      closeProductForm()
-
-      renderProducts()
-
-
-      showCmsMessage(
-        'Produit enregistré avec succès.'
-      )
+      menuMessage.textContent =
+        'Menu enregistré avec succès.'
 
     } catch (error) {
 
-      console.error(error)
-
-      showCmsMessage(
-        error.message ||
-        'Erreur lors de l’enregistrement.'
+      console.error(
+        'Erreur sauvegarde menu :',
+        error
       )
+
+      menuMessage.textContent =
+        'Impossible d’enregistrer le menu.'
 
     } finally {
 
-      saveButton.disabled = false
-
-      saveButton.textContent =
-        'Enregistrer'
+      saveMenuButton.disabled =
+        false
 
     }
 
@@ -945,171 +1244,8 @@ productForm.addEventListener(
 )
 
 
-// =========================================
-// PROCHAIN ID
-// =========================================
-
-function getNextProductId() {
-
-  if (products.length === 0) {
-    return 1
-  }
-
-
-  return Math.max(
-    ...products.map(
-      product =>
-        Number(product.id) || 0
-    )
-  ) + 1
-
-}
-
-
-// =========================================
-// SUPPRIMER PRODUIT
-// =========================================
-
-async function deleteProduct(id) {
-
-  const product =
-    products.find(
-      item => Number(item.id) === id
-    )
-
-
-  if (!product) {
-    return
-  }
-
-
-  const confirmed =
-    confirm(
-      `Voulez-vous vraiment supprimer "${product.name}" ?`
-    )
-
-
-  if (!confirmed) {
-    return
-  }
-
-
-  try {
-
-    products =
-      products.filter(
-        item =>
-          Number(item.id) !== id
-      )
-
-
-    await saveProducts()
-
-
-    renderProducts()
-
-
-    showCmsMessage(
-      'Produit supprimé avec succès.'
-    )
-
-  } catch (error) {
-
-    console.error(error)
-
-    showCmsMessage(
-      error.message ||
-      'Erreur lors de la suppression.'
-    )
-
-  }
-
-}
-
-
-// =========================================
-// SAUVEGARDER PRODUCTS.JSON
-// =========================================
-
-async function saveProducts() {
-
-  const content =
-    JSON.stringify(
-      {
-        products: products
-      },
-      null,
-      2
-    )
-
-
-  const encodedContent =
-    encodeBase64(content)
-
-
-  const response =
-    await fetch(
-      `${API}/api/products`,
-      {
-        method: 'PUT',
-
-        credentials: 'include',
-
-        headers: {
-          'Content-Type':
-            'application/json'
-        },
-
-        body: JSON.stringify({
-
-          content:
-            encodedContent,
-
-          sha:
-            productsSha
-
-        })
-
-      }
-    )
-
-
-  const data =
-    await response.json()
-
-
-  if (!response.ok) {
-
-    if (
-      response.status === 401
-    ) {
-
-      showLogin()
-
-    }
-
-
-    throw new Error(
-      data.details ||
-      data.error ||
-      'Erreur GitHub.'
-    )
-
-  }
-
-
-  if (data.sha) {
-
-    productsSha =
-      data.sha
-
-  }
-
-}
-
-
-// =========================================
+// ==================================================
 // INITIALISATION
-// =========================================
+// ==================================================
 
 checkSession()

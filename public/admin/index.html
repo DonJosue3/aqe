@@ -1,356 +1,272 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex" />
 
-  <title>African Queen Empire — Administration</title>
+    <title>African Queen Empire — Administration</title>
 
-  <link rel="stylesheet" href="./admin.css" />
-</head>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
 
-<body>
+  <body>
 
-  <!-- =========================
-       CONNEXION
-  ========================== -->
+    <!-- ==================================================
+         CONNEXION
+    ================================================== -->
 
-  <section id="login-screen">
+    <section id="login-screen">
 
-    <div class="login-box">
+      <div class="login-box">
 
-      <img
-        src="/aqe/images/aqelogo.png"
-        alt="African Queen Empire"
-        class="logo"
-      />
-
-      <h1>Administration</h1>
-
-      <p>Espace réservé au propriétaire</p>
-
-      <form id="login-form">
-
-        <label for="password">
-          Mot de passe
-        </label>
-
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          required
+        <img
+          src="/aqe/images/aqelogo.png"
+          alt="African Queen Empire"
+          class="logo"
         />
 
-        <button type="submit">
-          Se connecter
-        </button>
+        <h1>Administration</h1>
 
-      </form>
+        <p>Espace réservé au propriétaire</p>
 
-      <div id="login-message" class="message"></div>
+        <form id="login-form">
 
-    </div>
+          <label for="password">
+            Mot de passe
+          </label>
 
-  </section>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
 
+          <button type="submit">
+            Se connecter
+          </button>
 
-  <!-- =========================
-       ADMINISTRATION
-  ========================== -->
+        </form>
 
-  <section id="cms-screen" class="hidden">
-
-    <!-- HEADER ADMIN -->
-
-    <header class="admin-header">
-
-      <div>
-        <h1>African Queen Empire</h1>
-        <span>Administration</span>
-      </div>
-
-      <button
-        id="logout-button"
-        class="logout-button"
-      >
-        Se déconnecter
-      </button>
-
-    </header>
-
-
-    <!-- CONTENU -->
-
-    <main class="admin-main">
-
-      <div class="admin-title">
-
-        <div>
-          <h2>Gestion de la boutique</h2>
-
-          <p>
-            Gérez les produits affichés sur votre site.
-          </p>
-        </div>
-
-        <button
-          id="add-product-button"
-          class="primary-button"
-        >
-          + Ajouter un produit
-        </button>
+        <div id="login-message" class="message"></div>
 
       </div>
 
-
-      <!-- MESSAGE CMS -->
-
-      <div
-        id="cms-message"
-        class="cms-message"
-      ></div>
+    </section>
 
 
-      <!-- LISTE DES PRODUITS -->
+    <!-- ==================================================
+         ADMINISTRATION
+    ================================================== -->
 
-      <section id="products-container">
+    <section id="cms-screen" class="hidden">
 
-        <div
-          id="products-loading"
-          class="loading"
-        >
-          Chargement des produits...
+      <div class="admin-container">
+
+        <header class="admin-header">
+
+          <div>
+            <h1>Administration</h1>
+
+            <p>
+              Bienvenue dans l'espace d'administration
+              African Queen Empire.
+            </p>
+          </div>
+
+          <button id="logout-button" class="logout-button">
+            Se déconnecter
+          </button>
+
+        </header>
+
+
+        <!-- ==================================================
+             MENU PRINCIPAL DE L'ADMINISTRATION
+        ================================================== -->
+
+        <div class="admin-navigation">
+
+          <button
+            id="show-products-button"
+            class="admin-tab active"
+            type="button"
+          >
+            Produits
+          </button>
+
+          <button
+            id="show-menu-button"
+            class="admin-tab"
+            type="button"
+          >
+            Menu
+          </button>
+
         </div>
 
-        <div
-          id="products-list"
-          class="products-list"
-        ></div>
 
-      </section>
+        <!-- ==================================================
+             PRODUITS
+        ================================================== -->
 
+        <section
+          id="products-section"
+          class="admin-section"
+        >
 
-      <!-- =========================
-           FORMULAIRE PRODUIT
-      ========================== -->
-
-      <section
-        id="product-form-container"
-        class="product-form-container hidden"
-      >
-
-        <div class="product-form-card">
-
-          <div class="form-header">
+          <div class="section-header">
 
             <div>
-              <h2 id="product-form-title">
-                Ajouter un produit
-              </h2>
+              <h2>Produits</h2>
 
               <p>
-                Remplissez les informations du produit.
+                Gestion des produits de la boutique.
               </p>
             </div>
 
+          </div>
+
+          <div id="products-editor">
+
+            <p class="loading">
+              Chargement des produits...
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             MENU
+        ================================================== -->
+
+        <section
+          id="menu-section"
+          class="admin-section hidden"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <h2>Menu</h2>
+
+              <p>
+                Gestion des plats et boissons.
+              </p>
+            </div>
+
+          </div>
+
+
+          <!-- CATÉGORIES -->
+
+          <div class="menu-categories">
+
             <button
-              id="cancel-product-button"
-              class="close-button"
               type="button"
+              class="menu-category-button active"
+              data-category="platsDuJour"
             >
-              ×
+              Plats du jour
+            </button>
+
+            <button
+              type="button"
+              class="menu-category-button"
+              data-category="specialites"
+            >
+              Spécialités
+            </button>
+
+            <button
+              type="button"
+              class="menu-category-button"
+              data-category="boissons"
+            >
+              Boissons
+            </button>
+
+            <button
+              type="button"
+              class="menu-category-button"
+              data-category="petitDejeuner"
+            >
+              Petit déjeuner
+            </button>
+
+            <button
+              type="button"
+              class="menu-category-button"
+              data-category="petitsPlus"
+            >
+              Petits plus
+            </button>
+
+            <button
+              type="button"
+              class="menu-category-button"
+              data-category="patisseries"
+            >
+              Pâtisseries
+            </button>
+
+            <button
+              type="button"
+              class="menu-category-button"
+              data-category="portions"
+            >
+              Portions
+            </button>
+
+            <button
+              type="button"
+              class="menu-category-button"
+              data-category="pizza"
+            >
+              Pizza
             </button>
 
           </div>
 
 
-          <form id="product-form">
+          <!-- ÉDITEUR -->
 
-            <!-- ID -->
+          <div id="menu-editor">
 
-            <input
-              id="product-id"
-              type="hidden"
-            />
+            <p class="loading">
+              Chargement du menu...
+            </p>
 
+          </div>
 
-            <div class="form-grid">
 
-              <!-- NOM -->
+          <div class="save-area">
 
-              <div class="form-group">
+            <button
+              id="save-menu-button"
+              class="save-button"
+              type="button"
+            >
+              Enregistrer les modifications
+            </button>
 
-                <label for="product-name">
-                  Nom du produit
-                </label>
+            <div id="menu-message" class="message"></div>
 
-                <input
-                  id="product-name"
-                  type="text"
-                  required
-                  placeholder="Ex : Robe Kente"
-                />
+          </div>
 
-              </div>
+        </section>
 
+      </div>
 
-              <!-- CATÉGORIE -->
+    </section>
 
-              <div class="form-group">
 
-                <label for="product-category">
-                  Catégorie
-                </label>
+    <script src="./admin.js"></script>
 
-                <input
-                  id="product-category"
-                  type="text"
-                  required
-                  placeholder="Ex : mode"
-                />
-
-              </div>
-
-
-              <!-- LABEL -->
-
-              <div class="form-group">
-
-                <label for="product-label">
-                  Label
-                </label>
-
-                <input
-                  id="product-label"
-                  type="text"
-                  required
-                  placeholder="Ex : Mode"
-                />
-
-              </div>
-
-
-              <!-- PRIX -->
-
-              <div class="form-group">
-
-                <label for="product-price">
-                  Prix
-                </label>
-
-                <input
-                  id="product-price"
-                  type="text"
-                  required
-                  placeholder="Ex : 35 000 BIF"
-                />
-
-              </div>
-
-
-              <!-- IMAGE -->
-
-              <div class="form-group form-full">
-
-                <label for="product-image">
-                  Chemin de l'image
-                </label>
-
-                <input
-                  id="product-image"
-                  type="text"
-                  required
-                  placeholder="/images/products/produit.jpg"
-                />
-
-                <small>
-                  Exemple :
-                  /images/products/robe-kente.jpg
-                </small>
-
-              </div>
-
-
-              <!-- SIZE -->
-
-              <div class="form-group">
-
-                <label for="product-size">
-                  Taille d'affichage
-                </label>
-
-                <select id="product-size">
-
-                  <option value="short">
-                    Short
-                  </option>
-
-                  <option value="tall">
-                    Tall
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <!-- DESCRIPTION -->
-
-              <div class="form-group form-full">
-
-                <label for="product-description">
-                  Description
-                </label>
-
-                <textarea
-                  id="product-description"
-                  rows="5"
-                  placeholder="Description du produit..."
-                ></textarea>
-
-              </div>
-
-            </div>
-
-
-            <!-- BOUTONS -->
-
-            <div class="form-actions">
-
-              <button
-                type="button"
-                id="cancel-product-button-bottom"
-                class="secondary-button"
-              >
-                Annuler
-              </button>
-
-              <button
-                type="submit"
-                id="save-product-button"
-                class="primary-button"
-              >
-                Enregistrer
-              </button>
-
-            </div>
-
-          </form>
-
-        </div>
-
-      </section>
-
-    </main>
-
-  </section>
-
-
-  <script src="./admin.js"></script>
-
-</body>
+  </body>
 </html>
