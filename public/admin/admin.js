@@ -1202,7 +1202,7 @@ saveMenuButton.addEventListener(
 
         menuMessage.textContent =
           data.error ||
-          'Erreur lors de l'enregistrement.'
+          'Erreur lors de l\'enregistrement.'
 
         return
 
