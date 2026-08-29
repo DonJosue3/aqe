@@ -77,9 +77,9 @@
                             {{ product.price }}
                         </span>
 
-                        <div class="m-add" @click="addToCart(product)">
+                        <button class="m-add" @click="addToCart(product)" type="button">
                             <i class="ti ti-plus"></i>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -178,9 +178,18 @@ async function loadProducts() {
 function changeCategory(category) {
     selectedCategory.value = category
 }
-
 function addToCart(product) {
-    console.log('Ajouté :', product.name)
+    const phone = '25761205463'
+
+    const message =
+        `Bonjour African Queen Empire !%0A%0A` +
+        `Je suis intéressé(e) par le produit : ${product.name}%0A` +
+        `Prix affiché : ${product.price}%0A%0A` +
+        `Je voudrais discuter du prix.`;
+
+    const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+
+    window.open(whatsappUrl, '_blank');
 }
 
 onMounted(() => {
