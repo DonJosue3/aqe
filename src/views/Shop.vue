@@ -1012,7 +1012,7 @@ body {
 
     .site-footer {
         padding-right: 0vw;
-        width: 100vw;
+        width: 100%;
     }
 
     .mobile-drawer {
